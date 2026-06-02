@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JMasters Global | Academic & Professional Consultancy Worldwide</title>
+  <meta name="description" content="JMasters Global — expert academic consultancy. Economics, data analytics, thesis writing, health economics, nursing, CV & career guidance, online class support. PhD experts. 500+ clients since 2020."/>
+  <meta name="keywords" content="JMasters Global, economics consultancy, data analytics, thesis writing, dissertation help, SPSS, Stata, health economics, nursing assignment, online class help, CV writing, career guidance, undergraduate help, masters PhD support"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-logo">
+      <img src="logo.png" alt="JMasters Global"/>
+      <span>JMasters <strong>Global</strong></span>
+    </div>
+    <div class="modal-tabs">
+      <button class="mtab active" data-tab="login">Sign In</button>
+      <button class="mtab" data-tab="register">Register</button>
+    </div>
+    <div class="modal-form" id="loginForm">
+      <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com"/></div>
+      <div class="form-group"><label>Password</label><input type="password" placeholder="Enter your password"/></div>
+      <div class="form-row-between"><label class="check-label"><input type="checkbox"/> Remember me</label><a href="#" class="forgot">Forgot password?</a></div>
+      <button class="btn-submit" onclick="closeModal()">Sign In to JMasters Global</button>
+      <div class="modal-divider"><span>or continue with</span></div>
+      <a href="https://wa.me/+254104699084" class="btn-wa-modal" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.885l6.222-1.432A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.817 9.817 0 01-5.003-1.366l-.358-.213-3.712.854.87-3.612-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Chat on WhatsApp Instead
+      </a>
+    </div>
+    <div class="modal-form hidden" id="registerForm">
+      <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your full name"/></div>
+      <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com"/></div>
+      <div class="form-group"><label>Password</label><input type="password" placeholder="Create a password"/></div>
+      <div class="form-group"><label>Confirm Password</label><input type="password" placeholder="Confirm password"/></div>
+      <button class="btn-submit" onclick="closeModal()">Create Account</button>
+    </div>
+  </div>
+</div>
+
+<!-- PROMO TICKER -->
+<div class="promo-ticker">
+  <div class="ticker-track">
+    <span>🎉 <strong>20% OFF</strong> your first order — Use code <strong>JMASTERS20</strong></span>
+    <span>⚡ <strong>FREE CONSULTATION</strong> for all new clients</span>
+    <span>🎓 <strong>PhD dissertations</strong> — special rates available</span>
+    <span>📊 <strong>Same-day delivery</strong> for data analysis tasks</span>
+    <span>🏥 <strong>Health Economics</strong> specialists available now</span>
+    <span>💼 <strong>CV & Career Guidance</strong> — land your dream job</span>
+    <span>🎉 <strong>20% OFF</strong> your first order — Use code <strong>JMASTERS20</strong></span>
+    <span>⚡ <strong>FREE CONSULTATION</strong> for all new clients</span>
+    <span>📝 <strong>Thesis writing</strong> — Undergraduate to PhD level</span>
+    <span>🌍 <strong>500+ clients</strong> served across 30+ countries since 2020</span>
+    <span>🎉 <strong>20% OFF</strong> your first order — Use code <strong>JMASTERS20</strong></span>
+    <span>⚡ <strong>FREE CONSULTATION</strong> for all new clients</span>
+    <span>🎓 <strong>PhD dissertations</strong> — special rates available</span>
+    <span>📊 <strong>Same-day delivery</strong> for data analysis tasks</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="JMasters Global"/>
+      <span>JMasters <strong>Global</strong></span>
+    </a>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li class="has-dropdown">
+        <a href="services.html">Services <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="services.html#economics">📊 Economics Consultancy</a>
+          <a href="services.html#data">📈 Data Analytics</a>
+          <a href="services.html#business">💼 Business Analytics</a>
+          <a href="services.html#health">🏥 Health Economics</a>
+          <a href="services.html#thesis">📝 Thesis & Research</a>
+          <a href="services.html#nursing">❤️ Nursing Services</a>
+          <a href="services.html#online">🎓 Online Classes</a>
+          <a href="services.html#cv">🚀 CV & Career Guidance</a>
+        </div>
+      </li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><button class="nav-login" id="openLogin">Sign In</button></li>
+      <li><a href="https://wa.me/+254104699084" class="nav-cta" target="_blank">WhatsApp Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-bg">
+    <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge"><span class="live-dot"></span>500+ Clients Served Since 2020</div>
+      <div class="hero-brand-block">
+        <img src="logo.png" alt="JMasters Global" class="hero-logo"/>
+        <div>
+          <div class="hero-brand-name">JMasters Global</div>
+          <div class="hero-brand-tag">Bridging You to Excellence</div>
+        </div>
+      </div>
+      <h1 class="hero-title">Your Trusted Partner in <em>Academic & Professional</em> Excellence</h1>
+      <p class="hero-sub">From econometrics and data analytics to thesis writing, nursing, health economics, CV guidance, and online class support — JMasters Global delivers PhD-qualified solutions worldwide. Confidential. Original. On time.</p>
+      <div class="hero-promo-box">
+        <div class="promo-badge">🎉 FIRST ORDER</div>
+        <div class="promo-text"><strong>20% OFF</strong> — Use code <span class="promo-code">JMASTERS20</span></div>
+        <div class="promo-timer" id="promoTimer">Offer ends in: <span id="countdown">23:59:47</span></div>
+      </div>
+      <div class="hero-actions">
+        <a href="https://wa.me/+254104699084" class="btn-primary" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.885l6.222-1.432A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.817 9.817 0 01-5.003-1.366l-.358-.213-3.712.854.87-3.612-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+          Get Free Quote
+        </a>
+        <a href="services.html" class="btn-outline">View All Services →</a>
+        <button class="btn-login-hero" onclick="openModal()">Sign In / Register</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-n" data-target="500">0</span><span class="stat-plus">+</span><span class="stat-l">Clients</span></div>
+        <div class="sdiv"></div>
+        <div class="stat"><span class="stat-n" data-target="6">0</span><span class="stat-plus">+</span><span class="stat-l">Yrs Exp</span></div>
+        <div class="sdiv"></div>
+        <div class="stat"><span class="stat-n" data-target="30">0</span><span class="stat-plus">+</span><span class="stat-l">Countries</span></div>
+        <div class="sdiv"></div>
+        <div class="stat"><span class="stat-n" data-target="100">0</span><span class="stat-plus">%</span><span class="stat-l">Original</span></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="services-float-card">
+        <div class="sfc-header">
+          <span class="sfc-dot"></span>
+          <span>8 Expert Service Areas</span>
+        </div>
+        <div class="sfc-list">
+          <a href="services.html#economics" class="sfc-item"><span class="sfc-icon" style="background:rgba(139,92,246,.2)">📊</span><div><strong>Economics Consultancy</strong><small>Micro · Macro · Econometrics</small></div><span class="sfc-arrow">→</span></a>
+          <a href="services.html#data" class="sfc-item"><span class="sfc-icon" style="background:rgba(16,185,129,.2)">📈</span><div><strong>Data Analytics</strong><small>SPSS · Stata · R · Python</small></div><span class="sfc-arrow">→</span></a>
+          <a href="services.html#business" class="sfc-item"><span class="sfc-icon" style="background:rgba(59,130,246,.2)">💼</span><div><strong>Business Analytics</strong><small>Power BI · SmartPLS · SAS</small></div><span class="sfc-arrow">→</span></a>
+          <a href="services.html#health" class="sfc-item"><span class="sfc-icon" style="background:rgba(245,158,11,.2)">🏥</span><div><strong>Health Economics</strong><small>CEA · CBA · QALY · HTA</small></div><span class="sfc-arrow">→</span></a>
+          <a href="services.html#thesis" class="sfc-item"><span class="sfc-icon" style="background:rgba(236,72,153,.2)">📝</span><div><strong>Thesis & Research</strong><small>Undergrad to PhD</small></div><span class="sfc-arrow">→</span></a>
+          <a href="services.html#nursing" class="sfc-item"><span class="sfc-icon" style="background:rgba(239,68,68,.2)">❤️</span><div><strong>Nursing Services</strong><small>NCLEX · Care Plans</small></div><span class="sfc-arrow">→</span></a>
+          <a href="services.html#online" class="sfc-item"><span class="sfc-icon" style="background:rgba(6,182,212,.2)">🎓</span><div><strong>Online Class Support</strong><small>Canvas · Blackboard · Pearson</small></div><span class="sfc-arrow">→</span></a>
+          <a href="services.html#cv" class="sfc-item new-badge-item"><span class="sfc-icon" style="background:rgba(251,191,36,.2)">🚀</span><div><strong>CV & Career Guidance</strong><small>CV Writing · Interview Prep</small></div><span class="new-badge">NEW</span></a>
+        </div>
+        <a href="https://wa.me/+254104699084" class="sfc-cta" target="_blank">Get Free Quote in Minutes →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<section class="trust-bar">
+  <div class="trust-inner">
+    <div class="ti"><span>🎓</span><span>PhD Experts</span></div>
+    <div class="tsep"></div>
+    <div class="ti"><span>🔒</span><span>100% Confidential</span></div>
+    <div class="tsep"></div>
+    <div class="ti"><span>✅</span><span>Plagiarism-Free</span></div>
+    <div class="tsep"></div>
+    <div class="ti"><span>⏰</span><span>On-Time Delivery</span></div>
+    <div class="tsep"></div>
+    <div class="ti"><span>🔄</span><span>Free Revisions</span></div>
+    <div class="tsep"></div>
+    <div class="ti"><span>🌍</span><span>30+ Countries</span></div>
+    <div class="tsep"></div>
+    <div class="ti"><span>💬</span><span>24/7 Support</span></div>
+  </div>
+</section>
+
+<!-- ACADEMIC LEVELS -->
+<section class="section levels-section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">Academic Levels</span>
+      <h2 class="section-title">Support at Every<br/><em>Stage of Your Journey</em></h2>
+      <p class="section-sub">JMasters Global supports students and professionals at every academic level — from high school to PhD and beyond.</p>
+    </div>
+    <div class="levels-grid">
+      <div class="level-card" style="--lc:#06B6D4">
+        <div class="lc-icon">🏫</div>
+        <h3>High School</h3>
+        <p>Essays, assignments, research projects and exam preparation for O-Level, A-Level and IB students.</p>
+        <div class="lc-tag">All Subjects</div>
+      </div>
+      <div class="level-card" style="--lc:#10B981">
+        <div class="lc-icon">🎓</div>
+        <h3>Undergraduate</h3>
+        <p>Course assignments, research papers, data analysis, dissertations and online class support at bachelor's level.</p>
+        <div class="lc-tag">BA · BSc · BEd</div>
+      </div>
+      <div class="level-card featured-level" style="--lc:#8B5CF6">
+        <div class="lc-badge">Most Popular</div>
+        <div class="lc-icon">📚</div>
+        <h3>Masters</h3>
+        <p>Thesis writing, statistical analysis, literature reviews, capstone projects and comprehensive research support.</p>
+        <div class="lc-tag">MA · MSc · MBA · MEd</div>
+      </div>
+      <div class="level-card" style="--lc:#EC4899">
+        <div class="lc-icon">🔬</div>
+        <h3>PhD & Doctoral</h3>
+        <p>Full dissertation support, advanced econometrics, methodology chapters, and journal article preparation.</p>
+        <div class="lc-tag">PhD · DBA · EdD</div>
+      </div>
+      <div class="level-card" style="--lc:#F59E0B">
+        <div class="lc-icon">🚀</div>
+        <h3>CV & Career</h3>
+        <p>Professional CV writing, LinkedIn optimization, cover letters, interview preparation, and career strategy guidance.</p>
+        <div class="lc-tag">NEW SERVICE</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES GRID -->
+<section class="section services-section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">Our Services</span>
+      <h2 class="section-title">JMasters Global —<br/><em>8 Expert Service Areas</em></h2>
+      <p class="section-sub">Every service is led by PhD-qualified specialists with proven results across 30+ countries and 500+ satisfied clients.</p>
+    </div>
+    <div class="services-grid">
+      <a href="services.html#economics" class="svc-card" style="--ac:#8B5CF6">
+        <div class="svc-img"><img src="economics.png" alt="Economics Consultancy" loading="lazy"/></div>
+        <div class="svc-body">
+          <div class="svc-ico" style="background:rgba(139,92,246,.12)">📊</div>
+          <h3>Economics Consultancy</h3>
+          <p>Micro, macro, econometrics, financial, behavioral and international economics — rigorous analysis for academia and business.</p>
+          <div class="svc-chips"><span>Econometrics</span><span>SPSS</span><span>Stata</span><span>R</span></div>
+          <span class="svc-cta">Explore →</span>
+        </div>
+      </a>
+      <a href="services.html#data" class="svc-card" style="--ac:#10B981">
+        <div class="svc-img"><img src="data-analytics.png" alt="Data Analytics" loading="lazy"/></div>
+        <div class="svc-body">
+          <div class="svc-ico" style="background:rgba(16,185,129,.12)">📈</div>
+          <h3>Data Analytics</h3>
+          <p>Regression, SEM, time series, hypothesis testing, predictive modelling — with clear, actionable interpretation.</p>
+          <div class="svc-chips"><span>Python</span><span>R</span><span>Power BI</span><span>SQL</span></div>
+          <span class="svc-cta">Explore →</span>
+        </div>
+      </a>
+      <a href="services.html#business" class="svc-card" style="--ac:#3B82F6">
+        <div class="svc-img"><img src="business-analytics.png" alt="Business Analytics" loading="lazy"/></div>
+        <div class="svc-body">
+          <div class="svc-ico" style="background:rgba(59,130,246,.12)">💼</div>
+          <h3>Business Analytics</h3>
+          <p>Descriptive, predictive, prescriptive and diagnostic analytics to drive strategic decisions and growth.</p>
+          <div class="svc-chips"><span>Power BI</span><span>SmartPLS</span><span>SAS</span></div>
+          <span class="svc-cta">Explore →</span>
+        </div>
+      </a>
+      <a href="services.html#health" class="svc-card" style="--ac:#F59E0B">
+        <div class="svc-img"><img src="health-economics.png" alt="Health Economics" loading="lazy"/></div>
+        <div class="svc-body">
+          <div class="svc-ico" style="background:rgba(245,158,11,.12)">🏥</div>
+          <h3>Health Economics</h3>
+          <p>Healthcare financing, CEA, CBA, QALY metrics, pharmaceutical economics and health policy evaluation.</p>
+          <div class="svc-chips"><span>CEA</span><span>QALY</span><span>HTA</span><span>Policy</span></div>
+          <span class="svc-cta">Explore →</span>
+        </div>
+      </a>
+      <a href="services.html#thesis" class="svc-card" style="--ac:#EC4899">
+        <div class="svc-img"><img src="thesis.png" alt="Thesis & Research" loading="lazy"/></div>
+        <div class="svc-body">
+          <div class="svc-ico" style="background:rgba(236,72,153,.12)">📝</div>
+          <h3>Thesis & Research</h3>
+          <p>Plagiarism-free academic work from undergraduate to PhD — writing, literature reviews, proposals, analysis and formatting.</p>
+          <div class="svc-chips"><span>APA</span><span>Turnitin</span><span>LaTeX</span></div>
+          <span class="svc-cta">Explore →</span>
+        </div>
+      </a>
+      <a href="services.html#nursing" class="svc-card" style="--ac:#EF4444">
+        <div class="svc-img"><img src="nursing.png" alt="Nursing Services" loading="lazy"/></div>
+        <div class="svc-body">
+          <div class="svc-ico" style="background:rgba(239,68,68,.12)">❤️</div>
+          <h3>Nursing Services</h3>
+          <p>Evidence-based nursing support — NCLEX prep, care plans (NANDA/NIC/NOC), clinical skills and research papers.</p>
+          <div class="svc-chips"><span>NANDA</span><span>NIC</span><span>NCLEX</span></div>
+          <span class="svc-cta">Explore →</span>
+        </div>
+      </a>
+      <a href="services.html#online" class="svc-card" style="--ac:#06B6D4">
+        <div class="svc-img"><img src="online-classes.png" alt="Online Classes" loading="lazy"/></div>
+        <div class="svc-body">
+          <div class="svc-ico" style="background:rgba(6,182,212,.12)">🎓</div>
+          <h3>Online Class Services</h3>
+          <p>Full support on Blackboard, Canvas, Pearson, McGraw Hill, Cengage, Wiley — all assignments, quizzes and exams.</p>
+          <div class="svc-chips"><span>Canvas</span><span>Blackboard</span><span>Pearson</span></div>
+          <span class="svc-cta">Explore →</span>
+        </div>
+      </a>
+      <a href="services.html#cv" class="svc-card new-svc" style="--ac:#FBBF24">
+        <div class="new-svc-ribbon">NEW</div>
+        <div class="svc-img" style="background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;font-size:4rem;height:200px;">🚀</div>
+        <div class="svc-body">
+          <div class="svc-ico" style="background:rgba(251,191,36,.12)">🚀</div>
+          <h3>CV & Career Guidance</h3>
+          <p>Professional CV writing, LinkedIn optimization, cover letters, interview preparation and personalized career strategy.</p>
+          <div class="svc-chips"><span>CV Writing</span><span>LinkedIn</span><span>Interview Prep</span></div>
+          <span class="svc-cta">Explore →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section how-section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">How It Works</span>
+      <h2 class="section-title">Get JMasters Help<br/><em>in 4 Simple Steps</em></h2>
+    </div>
+    <div class="steps-row">
+      <div class="step-card"><div class="step-n">01</div><div class="step-ico">📋</div><h3>Share Requirements</h3><p>Tell us your subject, deadline, level and any instructions via WhatsApp or email.</p></div>
+      <div class="step-arrow">→</div>
+      <div class="step-card"><div class="step-n">02</div><div class="step-ico">💬</div><h3>Free Quote</h3><p>Receive a transparent, no-obligation quote within minutes. Zero hidden fees.</p></div>
+      <div class="step-arrow">→</div>
+      <div class="step-card"><div class="step-n">03</div><div class="step-ico">⚙️</div><h3>Expert Delivery</h3><p>PhD-qualified specialists deliver your work with progress updates throughout.</p></div>
+      <div class="step-arrow">→</div>
+      <div class="step-card"><div class="step-n">04</div><div class="step-ico">✅</div><h3>Review & Approve</h3><p>Receive your work. Free revisions until you are 100% satisfied.</p></div>
+    </div>
+    <div class="steps-cta">
+      <a href="https://wa.me/+254104699084" class="btn-primary" target="_blank">Start Now — It's Free to Ask →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="section why-section">
+  <div class="container why-wrap">
+    <div class="why-left">
+      <span class="section-tag light">Why JMasters Global</span>
+      <h2 class="section-title" style="color:#fff">Trusted Worldwide<br/><em>Since 2020</em></h2>
+      <p style="color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:32px;">JMasters Global has helped 500+ students, researchers, and professionals across the UK, USA, Australia, UAE, Canada, Europe, and Asia achieve outstanding results. Our track record speaks for itself.</p>
+      <div class="why-feats">
+        <div class="wf"><span class="wf-icon">🎓</span><div><strong>PhD-Led Team</strong><p>Led by Dr. Jason — 6+ years global experience</p></div></div>
+        <div class="wf"><span class="wf-icon">🌍</span><div><strong>Global Reach</strong><p>30+ countries — UK, USA, Australia, UAE, Asia</p></div></div>
+        <div class="wf"><span class="wf-icon">🔒</span><div><strong>100% Confidential</strong><p>Your details are never shared — ever</p></div></div>
+        <div class="wf"><span class="wf-icon">✅</span><div><strong>Plagiarism-Free</strong><p>Turnitin reports available on request</p></div></div>
+        <div class="wf"><span class="wf-icon">⏰</span><div><strong>On-Time Always</strong><p>We value your deadlines as much as you do</p></div></div>
+        <div class="wf"><span class="wf-icon">🔄</span><div><strong>Free Revisions</strong><p>Until you are 100% satisfied — no charge</p></div></div>
+      </div>
+    </div>
+    <div class="why-right">
+      <div class="why-stats-grid">
+        <div class="ws"><span class="ws-n" data-target="500">0</span><span class="ws-plus">+</span><span class="ws-l">Happy Clients</span></div>
+        <div class="ws"><span class="ws-n" data-target="6">0</span><span class="ws-plus">+</span><span class="ws-l">Years Experience</span></div>
+        <div class="ws"><span class="ws-n" data-target="30">0</span><span class="ws-plus">+</span><span class="ws-l">Countries</span></div>
+        <div class="ws"><span class="ws-n" data-target="100">0</span><span class="ws-plus">%</span><span class="ws-l">Satisfaction</span></div>
+        <div class="ws"><span class="ws-n" data-target="8">0</span><span class="ws-plus"></span><span class="ws-l">Service Areas</span></div>
+        <div class="ws"><span class="ws-n" data-target="15">0</span><span class="ws-plus">+</span><span class="ws-l">Tools & Software</span></div>
+      </div>
+      <a href="https://wa.me/+254104699084" class="btn-primary wa-full" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.885l6.222-1.432A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.817 9.817 0 01-5.003-1.366l-.358-.213-3.712.854.87-3.612-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        WhatsApp Dr. Jason Now
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testi-section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">Client Reviews</span>
+      <h2 class="section-title">What Our Clients Say<br/><em>Around the World</em></h2>
+      <p class="section-sub">Real feedback from 500+ students and professionals across Europe, USA, Asia and Australia since 2020.</p>
+    </div>
+    <div class="testi-carousel" id="testiCarousel">
+      <div class="testi-track" id="testiTrack">
+
+        <div class="tcard"><div class="tc-flag">🇺🇸</div><div class="tc-stars">★★★★★</div><p>"JMasters Global handled my PhD econometrics dissertation with exceptional precision. Complex panel data, Stata regressions, full interpretation — delivered 4 days early. Truly world-class."</p><div class="tc-author"><div class="tc-av" style="background:#8B5CF6">RB</div><div><strong>Robert B.</strong><span>PhD Economics, Harvard — USA</span></div></div></div>
+
+        <div class="tcard featured-t"><div class="tc-flag">🇺🇸</div><div class="tc-stars">★★★★★</div><p>"I've used JMasters Global five times — health economics, SPSS analysis, online class, thesis formatting, and a research proposal. Every single time: on time, outstanding quality. My permanent go-to team."</p><div class="tc-author"><div class="tc-av" style="background:#EC4899">MJ</div><div><strong>Monica J.</strong><span>Masters Health Policy, Johns Hopkins — USA</span></div></div></div>
+
+        <div class="tcard"><div class="tc-flag">🇺🇸</div><div class="tc-stars">★★★★★</div><p>"JMasters Global helped me with my Canvas assignments and Blackboard online class during finals. Delivered on time, completely confidential. Saved my entire GPA. Cannot recommend enough."</p><div class="tc-author"><div class="tc-av" style="background:#06B6D4">TP</div><div><strong>Tyler P.</strong><span>Business Admin, UCLA — California, USA</span></div></div></div>
+
+        <div class="tcard"><div class="tc-flag">🇺🇸</div><div class="tc-stars">★★★★★</div><p>"My nursing care plan using NANDA, NIC and NOC was perfectly structured. Clinical knowledge and attention to detail were beyond expectations. My professor specifically praised the quality."</p><div class="tc-author"><div class="tc-av" style="background:#EF4444">CE</div><div><strong>Cheryl E.</strong><span>BSN Nursing, University of Florida — USA</span></div></div></div>
+
+        <div class="tcard"><div class="tc-flag">🇦🇺</div><div class="tc-stars">★★★★★</div><p>"JMasters Global completed my 90-page Masters health economics thesis on Australia's public healthcare system. Perfectly structured, fully cited, Turnitin clean. My supervisor was genuinely impressed."</p><div class="tc-author"><div class="tc-av" style="background:#10B981">LW</div><div><strong>Lachlan W.</strong><span>Masters Health Economics, Uni of Melbourne</span></div></div></div>
+
+        <div class="tcard"><div class="tc-flag">🇦🇺</div><div class="tc-stars">★★★★★</div><p>"Contacted JMasters Global at 11pm with urgent SPSS regression work. Received polished, fully explained results by 6am. The 24/7 support is absolutely real. Consistently excellent."</p><div class="tc-author"><div class="tc-av" style="background:#F59E0B">NA</div><div><strong>Natasha A.</strong><span>PhD Candidate, University of Queensland</span></div></div></div>
+
+        <div class="tcard"><div class="tc-flag">🇦🇺</div><div class="tc-stars">★★★★★</div><p>"Used JMasters for CV writing and career guidance after my Masters. They completely transformed my CV and LinkedIn profile. I landed three interviews within two weeks of sending it out!"</p><div class="tc-author"><div class="tc-av" style="background:#FBBF24">BF</div><div><strong>Brianna F.</strong><span>Masters Graduate, Monash University</span></div></div></div>
+
+        <div class="tcard"><div class="tc-flag">🇬🇧</div><div class="tc-stars">★★★★★</div><p>"Exceptional econometrics support for my LSE research project. JMasters Global's understanding of EViews, panel data and time series modelling is at the highest professional level."</p><div class="tc-author"><div class="tc-av" style="background:#8B5CF6">OC</div><div><strong>Oliver C.</strong><span>MSc Economics, LSE — London, UK</span></div></div></div>
+
+        <div class="tcard"><div class="tc-flag">🇩🇪</div><div class="tc-stars">★★★★★</div><p>"As an international student in Germany I needed SEM analysis using SmartPLS for my dissertation. JMasters Global delivered a flawless analysis with full English interpretation. Excellent throughout."</p><div class="tc-author"><div class="tc-av" style="background:#3B82F6">KM</div><div><strong>Katharina M.</strong><span>PhD Management, University of Munich</span></div></div></div>
+
+        <div class="tcard"><div class="tc-flag">🇫🇷</div><div class="tc-stars">★★★★★</div><p>"JMasters Global wrote my financial economics paper with precise Harvard citations and zero plagiarism. Submitted with full confidence and received excellent feedback from my professor in Paris."</p><div class="tc-author"><div class="tc-av" style="background:#EC4899">SL</div><div><strong>Sophie L.</strong><span>Masters Finance, Sciences Po — Paris, France</span></div></div></div>
+
+        <div class="tcard"><div class="tc-flag">🇸🇬</div><div class="tc-stars">★★★★★</div><p>"Business analytics support for my MBA capstone in Singapore was outstanding. Power BI dashboards and predictive modelling delivered to a professional standard that impressed my entire committee."</p><div class="tc-author"><div class="tc-av" style="background:#06B6D4">HT</div><div><strong>Hiroshi T.</strong><span>MBA, National University of Singapore</span></div></div></div>
+
+        <div class="tcard"><div class="tc-flag">🇮🇳</div><div class="tc-stars">★★★★★</div><p>"Excellent help with my development economics thesis — poverty analysis, regression models and academic formatting. Dr. Jason's team understood my research perfectly. Five stars without hesitation."</p><div class="tc-author"><div class="tc-av" style="background:#F59E0B">PK</div><div><strong>Priya K.</strong><span>Masters Dev. Economics, NUS — Singapore</span></div></div></div>
+
+      </div>
+    </div>
+    <div class="testi-controls">
+      <button class="tc-btn" id="tcPrev">←</button>
+      <div class="tc-dots" id="tcDots"></div>
+      <button class="tc-btn" id="tcNext">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="section tools-section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">Our Toolkit</span>
+      <h2 class="section-title">15+ Professional Tools<br/><em>& Software Platforms</em></h2>
+    </div>
+    <div class="tools-wrap">
+      <div class="tool-pill">Excel</div><div class="tool-pill">SPSS</div><div class="tool-pill">Stata</div>
+      <div class="tool-pill">Python</div><div class="tool-pill">R</div><div class="tool-pill">EViews</div>
+      <div class="tool-pill">Jamovi</div><div class="tool-pill">JASP</div><div class="tool-pill">SAS</div>
+      <div class="tool-pill">Power BI</div><div class="tool-pill">Statistica</div><div class="tool-pill">SmartPLS</div>
+      <div class="tool-pill">SQL</div><div class="tool-pill">Minitab</div><div class="tool-pill">Turnitin</div>
+      <div class="tool-pill">Zotero</div><div class="tool-pill">LaTeX</div><div class="tool-pill">Grammarly</div>
+      <div class="tool-pill">Overleaf</div><div class="tool-pill">Google Scholar</div><div class="tool-pill">Mendeley</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-brand"><img src="logo.png" alt="JMasters Global" style="height:52px;filter:brightness(0) invert(1);opacity:.9"/><span>JMasters Global</span></div>
+    <h2>Ready to Get Started?</h2>
+    <p>Join 500+ students and professionals across 30+ countries who have trusted JMasters Global since 2020. We're one message away — available 24/7.</p>
+    <div class="cta-promo">🎉 Use code <strong>JMASTERS20</strong> for 20% off your first order</div>
+    <div class="cta-actions">
+      <a href="https://wa.me/+254104699084" class="btn-primary" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.885l6.222-1.432A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.817 9.817 0 01-5.003-1.366l-.358-.213-3.712.854.87-3.612-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Chat on WhatsApp
+      </a>
+      <a href="mailto:jasoneconomist@gmail.com" class="btn-outline-light">✉️ jasoneconomist@gmail.com</a>
+      <button class="btn-outline-light" onclick="openModal()">Sign In / Register</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand-col">
+      <div class="footer-brand"><img src="logo.png" alt="JMasters Global" class="footer-logo"/><span>JMasters Global</span></div>
+      <p>Your trusted academic and professional consultancy — delivering expert results worldwide since 2020.</p>
+      <div class="footer-contacts">
+        <a href="mailto:jasoneconomist@gmail.com">✉️ jasoneconomist@gmail.com</a>
+        <a href="https://wa.me/+254104699084" target="_blank">📱 +254 104 699 084</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Services</h4><ul>
+      <li><a href="services.html#economics">Economics Consultancy</a></li>
+      <li><a href="services.html#data">Data Analytics</a></li>
+      <li><a href="services.html#business">Business Analytics</a></li>
+      <li><a href="services.html#health">Health Economics</a></li>
+      <li><a href="services.html#thesis">Thesis & Research</a></li>
+      <li><a href="services.html#nursing">Nursing Services</a></li>
+      <li><a href="services.html#online">Online Class Services</a></li>
+      <li><a href="services.html#cv">CV & Career Guidance</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Academic Levels</h4><ul>
+      <li>🏫 High School</li>
+      <li>🎓 Undergraduate (BA/BSc)</li>
+      <li>📚 Masters (MA/MSc/MBA)</li>
+      <li>🔬 PhD & Doctoral</li>
+      <li>🚀 CV & Career</li>
+    </ul></div>
+    <div class="footer-col"><h4>Our Guarantees</h4><ul>
+      <li>✅ 100% Plagiarism-Free</li>
+      <li>🔒 Fully Confidential</li>
+      <li>🔄 Free Revisions</li>
+      <li>⏰ On-Time Delivery</li>
+      <li>🎓 PhD-Qualified Experts</li>
+      <li>🌍 30+ Countries Served</li>
+      <li>💬 24/7 Support</li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 <strong>JMasters Global</strong>. All rights reserved. <em>Bridging You to Excellence since 2020.</em></p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/+254104699084" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.885l6.222-1.432A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.817 9.817 0 01-5.003-1.366l-.358-.213-3.712.854.87-3.612-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+</a>
+
+<script src="main.js"></script>
+</body>
+</html>
