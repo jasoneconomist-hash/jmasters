@@ -1,264 +1,583 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Services | JMasters Global — Economics, Data Analytics, Thesis & More</title>
-  <meta name="description" content="Explore JMasters Global services: economics consultancy, data analytics, business analytics, health economics, thesis writing, nursing services & online class support. PhD experts. 500+ clients." />
-  <meta name="keywords" content="economics consultancy services, data analytics help, thesis writing service, dissertation writing, SPSS analysis, health economics, nursing assignment help, online class support, statistical analysis service" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Services | JMasters Global — Economics, Data Analytics, Thesis, Nursing & More</title>
+  <meta name="description" content="JMasters Global services: economics consultancy, data analytics, business analytics, health economics, thesis writing, nursing, CV & career guidance, online class support. PhD experts. 500+ clients worldwide."/>
+  <meta name="keywords" content="economics consultancy, data analytics, thesis writing, dissertation help, SPSS, Stata, health economics, nursing assignments, online class support, CV writing, career guidance, PhD support, undergraduate help, masters thesis"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ---- SERVICES PAGE SPECIFIC ---- */
+    .page-hero{background:var(--navy);padding:140px 24px 72px;text-align:center;position:relative;overflow:hidden}
+    .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(91,58,245,.18),transparent 60%)}
+    .page-hero-inner{position:relative;z-index:1;max-width:760px;margin:0 auto}
+    .page-hero h1{font-family:var(--fd);font-size:clamp(2.4rem,5vw,3.8rem);color:var(--white);margin-bottom:16px;line-height:1.1;font-weight:900}
+    .page-hero h1 span{color:var(--gold)}
+    .page-hero p{font-size:1.05rem;color:rgba(255,255,255,.62);line-height:1.75;max-width:580px;margin:0 auto 28px}
+    .page-hero-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:24px}
+    .phero-link{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.75);font-size:.78rem;font-weight:600;padding:7px 14px;border-radius:20px;transition:var(--tr);letter-spacing:.3px}
+    .phero-link:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+
+    /* SERVICE DETAIL BLOCKS */
+    .svc-block{padding:80px 0;border-bottom:1px solid var(--border)}
+    .svc-block:nth-child(even){background:var(--off)}
+    .svc-block-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+    .svc-block:nth-child(even) .svc-block-inner{direction:rtl}
+    .svc-block:nth-child(even) .svc-block-inner>*{direction:ltr}
+    .svc-block-visual{position:relative}
+    .svc-block-img{border-radius:16px;overflow:hidden;box-shadow:0 16px 56px rgba(11,30,61,.18)}
+    .svc-block-img img{width:100%;height:320px;object-fit:cover;object-position:top;display:block}
+    .svc-img-badge{position:absolute;bottom:-16px;left:24px;background:var(--navy);border:2px solid var(--gold);border-radius:12px;padding:12px 18px;display:flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(11,30,61,.3)}
+    .svc-img-badge-icon{font-size:1.4rem}
+    .svc-img-badge-text strong{display:block;color:var(--white);font-size:.88rem;font-weight:700}
+    .svc-img-badge-text span{color:var(--gold);font-size:.74rem;font-weight:600}
+
+    /* SERVICE CONTENT */
+    .svc-content{padding-top:8px}
+    .svc-num{font-family:var(--fd);font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+    .svc-content h2{font-family:var(--fd);font-size:clamp(1.9rem,3vw,2.6rem);font-weight:900;color:var(--navy);line-height:1.15;margin-bottom:14px}
+    .svc-content h2 span{color:var(--gold)}
+    .svc-tagline{font-size:.82rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+    .svc-tagline::after{content:'';flex:1;height:1px;background:var(--border)}
+    .svc-desc{font-size:.95rem;color:var(--muted);line-height:1.85;margin-bottom:24px}
+
+    /* TICK LIST */
+    .tick-list{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+    .tick-item{display:flex;align-items:flex-start;gap:12px;font-size:.9rem;color:var(--text);line-height:1.6}
+    .tick-item .tick{width:22px;height:22px;border-radius:50%;background:rgba(16,185,129,.12);border:1.5px solid rgba(16,185,129,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-size:.7rem;color:#10B981;font-weight:700}
+    .tick-item strong{color:var(--navy);font-weight:700}
+    .tick-item p{color:var(--muted);font-size:.85rem;margin-top:1px}
+
+    /* TWO COLUMN LIST */
+    .two-col-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px}
+    .tcl-item{display:flex;align-items:center;gap:9px;font-size:.85rem;color:var(--text);font-weight:500}
+    .tcl-item::before{content:'✓';color:var(--gold);font-weight:800;font-size:.85rem;flex-shrink:0}
+
+    /* TOOLS STRIP */
+    .tools-strip{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:24px}
+    .ts-pill{background:var(--off);border:1.5px solid var(--border);padding:5px 13px;border-radius:20px;font-size:.76rem;font-weight:700;color:var(--navy);transition:var(--tr)}
+    .ts-pill:hover{background:var(--navy);color:var(--white);border-color:var(--navy)}
+
+    /* WHY CHOOSE GRID */
+    .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px}
+    .why-item{background:var(--off);border:1px solid var(--border);border-radius:10px;padding:14px;display:flex;align-items:flex-start;gap:10px}
+    .why-item-icon{font-size:1.1rem;flex-shrink:0;margin-top:2px}
+    .why-item strong{display:block;font-size:.82rem;font-weight:700;color:var(--navy);margin-bottom:2px}
+    .why-item p{font-size:.76rem;color:var(--muted);line-height:1.5}
+
+    /* CTA ROW */
+    .svc-cta-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .btn-svc-wa{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy);font-family:var(--fb);font-weight:700;font-size:.9rem;padding:12px 22px;border-radius:50px;border:none;cursor:pointer;transition:var(--tr);box-shadow:0 4px 16px rgba(232,160,32,.3)}
+    .btn-svc-wa:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,160,32,.45)}
+    .btn-svc-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--navy);font-family:var(--fb);font-weight:600;font-size:.88rem;padding:11px 20px;border-radius:50px;border:1.5px solid var(--border);cursor:pointer;transition:var(--tr)}
+    .btn-svc-ghost:hover{border-color:var(--navy);background:var(--navy);color:var(--white)}
+
+    /* SCROLLING SERVICES BAR */
+    .svc-scroll-bar{background:var(--navy);padding:20px 0;overflow:hidden;border-top:1px solid rgba(255,255,255,.07)}
+    .svc-scroll-bar h3{text-align:center;color:rgba(255,255,255,.4);font-size:.72rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:14px;padding:0 24px}
+    .svc-scroll-track-wrap{overflow:hidden}
+    .svc-scroll-track{display:flex;gap:12px;animation:svcScroll 30s linear infinite;width:max-content}
+    .svc-scroll-track:hover{animation-play-state:paused}
+    @keyframes svcScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    .svc-scroll-item{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:50px;padding:10px 20px;white-space:nowrap;cursor:pointer;transition:var(--tr);flex-shrink:0}
+    .svc-scroll-item:hover{background:var(--gold);border-color:var(--gold)}
+    .svc-scroll-item:hover span,.svc-scroll-item:hover strong{color:var(--navy)!important}
+    .svc-scroll-item span{font-size:.95rem}
+    .svc-scroll-item strong{font-size:.82rem;font-weight:700;color:rgba(255,255,255,.85)}
+    .svc-scroll-item small{font-size:.72rem;color:rgba(255,255,255,.4);margin-left:4px}
+
+    /* PAGE CTA */
+    .page-cta{background:linear-gradient(135deg,var(--navy),#1e3a6e);padding:72px 24px;text-align:center}
+    .page-cta h2{font-family:var(--fd);font-size:clamp(1.8rem,3vw,2.6rem);color:var(--white);margin-bottom:12px;font-weight:900}
+    .page-cta p{color:rgba(255,255,255,.6);font-size:.98rem;line-height:1.75;margin-bottom:28px;max-width:560px;margin-left:auto;margin-right:auto}
+    .page-cta-promo{display:inline-block;background:rgba(232,160,32,.15);border:1px solid rgba(232,160,32,.4);color:var(--gold2);font-size:.82rem;font-weight:700;padding:7px 18px;border-radius:50px;margin-bottom:24px;letter-spacing:.5px}
+    .page-cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+    @media(max-width:900px){
+      .svc-block-inner{grid-template-columns:1fr}
+      .svc-block:nth-child(even) .svc-block-inner{direction:ltr}
+      .two-col-list{grid-template-columns:1fr}
+      .why-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:600px){.page-hero-nav{gap:6px}.svc-cta-row{flex-direction:column}}
+  </style>
 </head>
 <body>
-  <nav class="nav" id="nav">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo"><img src="logo.png" alt="JMasters Global" /></a>
-      <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html" class="active">Services</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="https://wa.me/+254104699084" class="nav-cta" target="_blank">WhatsApp Us</a></li>
-      </ul>
-    </div>
-  </nav>
 
-  <div class="page-hero">
-    <div class="page-hero-inner">
-      <span class="section-tag">What We Offer</span>
-      <h1>Expert Services<br /><em>For Every Need</em></h1>
-      <p>PhD-qualified specialists covering economics, data analytics, research writing, nursing, health economics & online class support — worldwide, 24/7.</p>
+<!-- NAV -->
+<div class="promo-ticker">
+  <div class="ticker-track">
+    <span>🎉 <strong>20% OFF</strong> your first order — Use code <strong>JMASTERS20</strong></span>
+    <span>⚡ <strong>FREE CONSULTATION</strong> for all new clients — WhatsApp us now</span>
+    <span>🎓 <strong>PhD dissertations</strong> — special rates available</span>
+    <span>📊 <strong>Same-day delivery</strong> on data analysis tasks</span>
+    <span>🚀 <strong>NEW:</strong> CV & Career Guidance service now available</span>
+    <span>🌍 <strong>500+ clients</strong> served across 30+ countries since 2020</span>
+    <span>🎉 <strong>20% OFF</strong> your first order — Use code <strong>JMASTERS20</strong></span>
+    <span>⚡ <strong>FREE CONSULTATION</strong> for all new clients — WhatsApp us now</span>
+    <span>🎓 <strong>PhD dissertations</strong> — special rates available</span>
+    <span>📊 <strong>Same-day delivery</strong> on data analysis tasks</span>
+    <span>🚀 <strong>NEW:</strong> CV & Career Guidance service now available</span>
+    <span>🌍 <strong>500+ clients</strong> served across 30+ countries since 2020</span>
+  </div>
+</div>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="JMasters Global"/><span>JMasters <strong>Global</strong></span></a>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://wa.me/+254104699084" class="nav-cta" target="_blank">WhatsApp Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="section-tag">8 Expert Services</span>
+    <h1>JMasters Global —<br/><span>Services Built Around</span> Your Success</h1>
+    <p>PhD-qualified specialists delivering world-class academic, research, analytics and career support — confidential, original, and on time. Jump to any service below.</p>
+    <div class="page-hero-nav">
+      <a href="#economics" class="phero-link">📊 Economics</a>
+      <a href="#data" class="phero-link">📈 Data Analytics</a>
+      <a href="#business" class="phero-link">💼 Business Analytics</a>
+      <a href="#health" class="phero-link">🏥 Health Economics</a>
+      <a href="#thesis" class="phero-link">📝 Thesis & Research</a>
+      <a href="#nursing" class="phero-link">❤️ Nursing</a>
+      <a href="#online" class="phero-link">🎓 Online Classes</a>
+      <a href="#cv" class="phero-link">🚀 CV & Career</a>
     </div>
   </div>
+</div>
 
-  <!-- ECONOMICS -->
-  <div class="svc-detail" id="economics">
-    <div class="svc-detail-inner">
-      <div class="svc-detail-img"><img src="economics.png" alt="Economics Consultancy" loading="lazy" /></div>
-      <div class="svc-detail-content">
-        <span class="section-tag">Service 01</span>
-        <h2>Economics<br /><em>Consultancy</em></h2>
-        <p>Our PhD-qualified economists deliver rigorous, evidence-based analysis across the full spectrum of economic disciplines. Whether you need academic research, policy analysis, or business insights — we provide customized solutions with precision and integrity.</p>
-        <ul class="svc-list">
-          <li>Microeconomics — supply & demand, market structures, consumer behaviour</li>
-          <li>Macroeconomics — national income, monetary & fiscal policy, GDP analysis</li>
-          <li>Econometrics — regression, panel data, time series, forecasting models</li>
-          <li>Development Economics — growth, globalization, trade & poverty analysis</li>
-          <li>Financial Economics — investment analysis, risk management, portfolio theory</li>
-          <li>International Economics — trade theory, exchange rates, balance of payments</li>
-          <li>Behavioral Economics — decision-making, cognitive bias, consumer behavior</li>
-          <li>Public & Environmental Economics — policy, cost-benefit, environmental valuation</li>
-          <li>Game Theory — strategic interaction, Nash equilibrium, bargaining</li>
-        </ul>
-        <p><strong>Tools:</strong> Excel · SPSS · Stata · Python · R · EViews · Jamovi · JASP · SAS · Power BI · Statistica · SmartPLS · SQL</p>
-        <a href="https://wa.me/+254104699084" class="btn-primary" target="_blank" style="margin-top:16px;display:inline-flex;">Get Economics Help →</a>
+<!-- ====== 01 ECONOMICS ====== -->
+<div class="svc-block" id="economics">
+  <div class="svc-block-inner">
+    <div class="svc-block-visual">
+      <div class="svc-block-img"><img src="economics.png" alt="Economics Consultancy at JMasters Global" loading="lazy"/></div>
+      <div class="svc-img-badge">
+        <div class="svc-img-badge-icon">📊</div>
+        <div class="svc-img-badge-text"><strong>Economics Consultancy</strong><span>Evidence-Based · Data-Driven · Expert-Led</span></div>
+      </div>
+    </div>
+    <div class="svc-content">
+      <div class="svc-num">Service 01</div>
+      <h2>Economics<br/><span>Consultancy</span></h2>
+      <div class="svc-tagline">Insights · Analysis · Impact</div>
+      <p class="svc-desc">Our PhD-qualified economists deliver rigorous, evidence-based economic analysis across the full spectrum of economic disciplines. Whether you are a student, researcher, policymaker, or business professional — JMasters Global provides customized solutions with precision, depth, and absolute integrity.</p>
+
+      <div class="tick-list">
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Microeconomics</strong><p>Supply and demand analysis, market structures, consumer behaviour, pricing theory, and welfare economics.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Macroeconomics</strong><p>National income analysis, monetary and fiscal policy, inflation, GDP modelling, and economic growth theory.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Econometrics</strong><p>OLS, GLS, panel data models, time series (ARIMA, VAR), instrumental variables, and structural equation modelling.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Development Economics</strong><p>Economic growth, poverty analysis, globalization, trade policy, and sustainable development frameworks.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Financial Economics</strong><p>Investment analysis, risk management, portfolio theory, asset pricing, and financial market modelling.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Behavioral Economics</strong><p>Consumer decision-making, cognitive bias, nudge theory, and experimental economics design.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>International Economics</strong><p>Trade theory, exchange rates, balance of payments, comparative advantage, and global market analysis.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Public & Environmental Economics</strong><p>Government policy analysis, cost-benefit analysis, environmental valuation, and sustainable development.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Game Theory</strong><p>Strategic interaction modelling, Nash equilibrium, bargaining theory, and auction design.</p></div></div>
+      </div>
+
+      <div class="tools-strip">
+        <span class="ts-pill">Excel</span><span class="ts-pill">SPSS</span><span class="ts-pill">Stata</span><span class="ts-pill">Python</span><span class="ts-pill">R</span><span class="ts-pill">EViews</span><span class="ts-pill">Jamovi</span><span class="ts-pill">JASP</span><span class="ts-pill">SAS</span><span class="ts-pill">Power BI</span><span class="ts-pill">Statistica</span><span class="ts-pill">SmartPLS</span><span class="ts-pill">SQL</span>
+      </div>
+      <div class="svc-cta-row">
+        <a href="https://wa.me/+254104699084" class="btn-svc-wa" target="_blank">📱 Get Economics Help</a>
+        <a href="contact.html" class="btn-svc-ghost">Request a Free Quote →</a>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- DATA ANALYTICS -->
-  <div class="svc-detail" id="data">
-    <div class="svc-detail-inner">
-      <div class="svc-detail-img"><img src="data-analytics.png" alt="Data Analytics" loading="lazy" /></div>
-      <div class="svc-detail-content">
-        <span class="section-tag">Service 02</span>
-        <h2>Data Analytics<br /><em>Services</em></h2>
-        <p>We transform raw data into clear, actionable insights. From descriptive statistics to complex predictive models, our analysts deliver accurate, reliable results that empower confident, data-driven decisions.</p>
-        <ul class="svc-list">
-          <li>Descriptive Statistics — distributions, central tendency & variability</li>
-          <li>Hypothesis Testing — T-test, ANOVA, Chi-Square with full interpretation</li>
-          <li>Regression Analysis — simple, multiple, logistic & non-linear</li>
-          <li>Time Series Analysis — ARIMA, trend analysis & seasonal decomposition</li>
-          <li>SEM — structural equation modelling & latent variable analysis</li>
-          <li>Cluster & Correlation Analysis — pattern identification in complex datasets</li>
-          <li>Bayesian Statistics — probabilistic modelling & inference</li>
-          <li>Predictive & Forecasting Models — ML-assisted prediction & scenarios</li>
-          <li>SQL Data Management — database design, querying & extraction</li>
-          <li>Data Cleaning & Aggregation — missing data, outliers & restructuring</li>
-        </ul>
-        <p><strong>Tools:</strong> SPSS · Stata · Python · R · Jamovi · JASP · EViews · SAS · Power BI · Excel · SQL · Statistica · SmartPLS · Minitab</p>
-        <a href="https://wa.me/+254104699084" class="btn-primary" target="_blank" style="margin-top:16px;display:inline-flex;">Get Data Analytics Help →</a>
+<!-- ====== 02 DATA ANALYTICS ====== -->
+<div class="svc-block" id="data">
+  <div class="svc-block-inner">
+    <div class="svc-block-visual">
+      <div class="svc-block-img"><img src="data-analytics.png" alt="Data Analytics Services" loading="lazy"/></div>
+      <div class="svc-img-badge">
+        <div class="svc-img-badge-icon">📈</div>
+        <div class="svc-img-badge-text"><strong>Data Analytics</strong><span>Accurate · Reliable · Actionable</span></div>
+      </div>
+    </div>
+    <div class="svc-content">
+      <div class="svc-num">Service 02</div>
+      <h2>Data Analytics<br/><span>Services</span></h2>
+      <div class="svc-tagline">Transforming Data Into Decisions</div>
+      <p class="svc-desc">We transform raw data into clear, actionable insights. From basic descriptive statistics to complex predictive models, our expert analysts deliver accurate, reliable results with full interpretation and professional reporting — helping students, researchers, and businesses make confident decisions.</p>
+
+      <div class="tick-list">
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Descriptive Statistics</strong><p>Mean, median, mode, standard deviation, frequency distributions, and comprehensive data summaries.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Hypothesis Testing</strong><p>T-tests (independent, paired, one-sample), ANOVA, MANOVA, Chi-Square, Mann-Whitney — with full interpretation.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Regression Analysis</strong><p>Simple, multiple, logistic, ordinal, and non-linear regression with diagnostics and assumption testing.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Structural Equation Modelling (SEM)</strong><p>Path analysis, confirmatory factor analysis (CFA), latent variable modelling using SmartPLS and AMOS.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Time Series Analysis</strong><p>ARIMA, SARIMA, trend analysis, seasonal decomposition, forecasting, and stationarity testing.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Cluster & Correlation Analysis</strong><p>K-means clustering, hierarchical clustering, Pearson and Spearman correlation with full reporting.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Bayesian Statistics</strong><p>Probabilistic modelling, prior and posterior analysis, and Bayesian inference for advanced research.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Predictive & Forecasting Models</strong><p>Machine learning-assisted prediction, decision trees, random forests, and scenario modelling.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Data Cleaning & Preparation</strong><p>Handling missing data, outlier detection, variable recoding, and dataset restructuring for analysis.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>SQL & Data Management</strong><p>Database design, querying, joins, aggregations, and data extraction for structured analytical workflows.</p></div></div>
+      </div>
+
+      <div class="tools-strip">
+        <span class="ts-pill">SPSS</span><span class="ts-pill">Stata</span><span class="ts-pill">Python</span><span class="ts-pill">R</span><span class="ts-pill">Jamovi</span><span class="ts-pill">JASP</span><span class="ts-pill">EViews</span><span class="ts-pill">SAS</span><span class="ts-pill">Power BI</span><span class="ts-pill">Excel</span><span class="ts-pill">SQL</span><span class="ts-pill">Statistica</span><span class="ts-pill">SmartPLS</span><span class="ts-pill">Minitab</span>
+      </div>
+      <div class="svc-cta-row">
+        <a href="https://wa.me/+254104699084" class="btn-svc-wa" target="_blank">📱 Get Data Analytics Help</a>
+        <a href="contact.html" class="btn-svc-ghost">Request a Free Quote →</a>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- BUSINESS ANALYTICS -->
-  <div class="svc-detail" id="business">
-    <div class="svc-detail-inner">
-      <div class="svc-detail-img"><img src="business-analytics.png" alt="Business Analytics" loading="lazy" /></div>
-      <div class="svc-detail-content">
-        <span class="section-tag">Service 03</span>
-        <h2>Business Analytics<br /><em>Services</em></h2>
-        <p>We transform your business data into meaningful insights that drive strategic decisions, improve performance, and accelerate sustainable growth. From startups to large organizations — we deliver results that matter.</p>
-        <ul class="svc-list">
-          <li>Descriptive Analytics — summarize past data, identify trends & KPIs</li>
-          <li>Predictive Analytics — forecast future trends using statistical models & ML</li>
-          <li>Prescriptive Analytics — recommend optimal actions to improve outcomes</li>
-          <li>Diagnostic Analytics — uncover root causes behind business outcomes</li>
-          <li>Data Visualization — Power BI dashboards & executive reports</li>
-          <li>Market Research & Analysis — competitive analysis & market sizing</li>
-        </ul>
-        <p><strong>Tools:</strong> SPSS · R · Python · Power BI · Excel · SAS · EViews · Stata · SmartPLS · JASP · Jamovi · Statistica</p>
-        <a href="https://wa.me/+254104699084" class="btn-primary" target="_blank" style="margin-top:16px;display:inline-flex;">Get Business Analytics Help →</a>
+<!-- ====== 03 BUSINESS ANALYTICS ====== -->
+<div class="svc-block" id="business">
+  <div class="svc-block-inner">
+    <div class="svc-block-visual">
+      <div class="svc-block-img"><img src="business-analytics.png" alt="Business Analytics Services" loading="lazy"/></div>
+      <div class="svc-img-badge">
+        <div class="svc-img-badge-icon">💼</div>
+        <div class="svc-img-badge-text"><strong>Business Analytics</strong><span>Data · Insights · Decisions · Growth</span></div>
+      </div>
+    </div>
+    <div class="svc-content">
+      <div class="svc-num">Service 03</div>
+      <h2>Business Analytics<br/><span>Services</span></h2>
+      <div class="svc-tagline">Turning Data Into Competitive Advantage</div>
+      <p class="svc-desc">We transform your business data into meaningful insights that drive strategic decisions, improve organizational performance, and accelerate sustainable growth. Whether you are a startup, SME, or large organization — JMasters Global delivers business analytics solutions that produce measurable results.</p>
+
+      <div class="tick-list">
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Descriptive Analytics</strong><p>Summarize historical business data to identify trends, patterns, KPIs, and performance benchmarks that give a clear picture of where you stand.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Predictive Analytics</strong><p>Use statistical models and machine learning to forecast future trends, customer behaviour, revenue projections, and business outcomes.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Prescriptive Analytics</strong><p>Recommend optimal actions and resource allocation strategies to improve outcomes, maximize efficiency, and reduce operational risk.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Diagnostic Analytics</strong><p>Investigate the root causes behind business outcomes — understanding why results occurred to address challenges at their source.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Market Research & Competitive Analysis</strong><p>Market sizing, competitor benchmarking, customer segmentation, and opportunity analysis with professional reporting.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Data Visualization & Dashboards</strong><p>Professional Power BI dashboards, executive reports, and interactive visualizations that communicate insights clearly to stakeholders.</p></div></div>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-item"><div class="why-item-icon">🎯</div><div><strong>Strategic Decisions</strong><p>Make confident decisions backed by accurate data and evidence</p></div></div>
+        <div class="why-item"><div class="why-item-icon">📈</div><div><strong>Better Performance</strong><p>Identify inefficiencies and optimize operations for maximum results</p></div></div>
+        <div class="why-item"><div class="why-item-icon">🛡</div><div><strong>Risk Management</strong><p>Identify business risks early and develop mitigation strategies</p></div></div>
+        <div class="why-item"><div class="why-item-icon">🌱</div><div><strong>Sustainable Growth</strong><p>Build data-backed growth strategies that scale with your organization</p></div></div>
+      </div>
+
+      <div class="tools-strip">
+        <span class="ts-pill">SPSS</span><span class="ts-pill">R</span><span class="ts-pill">Python</span><span class="ts-pill">Power BI</span><span class="ts-pill">Excel</span><span class="ts-pill">SAS</span><span class="ts-pill">EViews</span><span class="ts-pill">Stata</span><span class="ts-pill">SmartPLS</span><span class="ts-pill">JASP</span><span class="ts-pill">Jamovi</span><span class="ts-pill">Statistica</span>
+      </div>
+      <div class="svc-cta-row">
+        <a href="https://wa.me/+254104699084" class="btn-svc-wa" target="_blank">📱 Get Business Analytics Help</a>
+        <a href="contact.html" class="btn-svc-ghost">Request a Free Quote →</a>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- HEALTH ECONOMICS -->
-  <div class="svc-detail" id="health">
-    <div class="svc-detail-inner">
-      <div class="svc-detail-img"><img src="health-economics.png" alt="Health Economics" loading="lazy" /></div>
-      <div class="svc-detail-content">
-        <span class="section-tag">Service 04</span>
-        <h2>Health Economics<br /><em>Services</em></h2>
-        <p>Applying economic principles and advanced analytics to optimize healthcare systems for better outcomes, value, and sustainability. Our health economics experts support academic research, policy analysis, and healthcare decision-making.</p>
-        <ul class="svc-list">
-          <li>Healthcare Financing & Payment Systems — insurance markets, payment models</li>
-          <li>Cost-Effectiveness & Cost-Benefit Analysis — CEA, CBA, QALY metrics</li>
-          <li>Healthcare Demand & Utilization — access, behavioral economics in health</li>
-          <li>Health Inequality & Equity — social determinants, health disparities</li>
-          <li>Pharmaceutical Economics — drug pricing, Health Technology Assessment (HTA)</li>
-          <li>Health Workforce Economics — labor market, incentives & compensation</li>
-          <li>Healthcare Market Structure — market failures, regulation & competition</li>
-          <li>Evidence-Based & Policy Support — robust data models for health policy</li>
-        </ul>
-        <p><strong>Tools:</strong> SPSS · Jamovi · Stata · Python · Statistica · Power BI · JASP · Excel · SQL · EViews · SAS · R · SmartPLS</p>
-        <a href="https://wa.me/+254104699084" class="btn-primary" target="_blank" style="margin-top:16px;display:inline-flex;">Get Health Economics Help →</a>
+<!-- ====== 04 HEALTH ECONOMICS ====== -->
+<div class="svc-block" id="health">
+  <div class="svc-block-inner">
+    <div class="svc-block-visual">
+      <div class="svc-block-img"><img src="health-economics.png" alt="Health Economics Services" loading="lazy"/></div>
+      <div class="svc-img-badge">
+        <div class="svc-img-badge-icon">🏥</div>
+        <div class="svc-img-badge-text"><strong>Health Economics</strong><span>Evidence · Efficiency · Equity</span></div>
+      </div>
+    </div>
+    <div class="svc-content">
+      <div class="svc-num">Service 04</div>
+      <h2>Health Economics<br/><span>Services</span></h2>
+      <div class="svc-tagline">Better Insights · Better Decisions · Better Outcomes</div>
+      <p class="svc-desc">Applying advanced economic principles and analytics to optimize healthcare systems for better outcomes, value, and sustainability. Our health economics specialists support academic research, policy evaluation, and healthcare decision-making at all levels — from student assignments to professional consultancy.</p>
+
+      <div class="tick-list">
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Healthcare Financing & Payment Systems</strong><p>Insurance markets, public vs. private healthcare models, payment systems, and healthcare expenditure analysis.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Cost-Effectiveness Analysis (CEA)</strong><p>Full CEA studies, incremental cost-effectiveness ratios (ICER), threshold analysis, and decision-tree modelling.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Cost-Benefit Analysis (CBA) & QALY Metrics</strong><p>Monetization of health outcomes, willingness-to-pay analysis, QALY calculations, and DALY assessments.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Health Technology Assessment (HTA)</strong><p>Systematic evaluation of medical technologies, pharmaceuticals, and interventions for policy decisions.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Healthcare Demand & Utilization</strong><p>Healthcare access modeling, behavioral economics in health, and utilization pattern analysis.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Health Inequality & Equity Analysis</strong><p>Social determinants of health, health disparity measurement, equity indices, and inequality decomposition.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Pharmaceutical Economics</strong><p>Drug pricing models, market authorization economics, pharmacoeconomic evaluations, and formulary decisions.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Health Workforce Economics</strong><p>Labor market analysis, physician supply and demand, incentive structures, and compensation modelling.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Healthcare Market Structure</strong><p>Market failure analysis, regulation and competition policy, and hospital market concentration studies.</p></div></div>
+      </div>
+
+      <div class="tools-strip">
+        <span class="ts-pill">SPSS</span><span class="ts-pill">Stata</span><span class="ts-pill">Python</span><span class="ts-pill">R</span><span class="ts-pill">Jamovi</span><span class="ts-pill">Power BI</span><span class="ts-pill">JASP</span><span class="ts-pill">Excel</span><span class="ts-pill">SQL</span><span class="ts-pill">EViews</span><span class="ts-pill">SAS</span><span class="ts-pill">SmartPLS</span>
+      </div>
+      <div class="svc-cta-row">
+        <a href="https://wa.me/+254104699084" class="btn-svc-wa" target="_blank">📱 Get Health Economics Help</a>
+        <a href="contact.html" class="btn-svc-ghost">Request a Free Quote →</a>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- THESIS & RESEARCH -->
-  <div class="svc-detail" id="thesis">
-    <div class="svc-detail-inner">
-      <div class="svc-detail-img"><img src="thesis.png" alt="Thesis & Research" loading="lazy" /></div>
-      <div class="svc-detail-content">
-        <span class="section-tag">Service 05</span>
-        <h2>Thesis & Research<br /><em>Work Solutions</em></h2>
-        <p>High-quality, original, and thoroughly researched academic work from undergraduate to PhD level — delivered with professionalism, integrity, and excellence. We understand the pressure of academic deadlines and high standards.</p>
-        <ul class="svc-list">
-          <li>Thesis Writing — structured, coherent, plagiarism-free across all disciplines</li>
-          <li>Research Papers — undergraduate through PhD, all academic standards</li>
-          <li>Data Analysis & Interpretation — accurate analysis with clear findings</li>
-          <li>Literature Review & Proposal Writing — comprehensive, compelling proposals</li>
-          <li>Statistical Modeling & Reporting — professional, submission-ready reports</li>
-          <li>Formatting & Proofreading — APA, MLA, Harvard, Chicago formatting</li>
-          <li>Capstone Projects — end-to-end project support & delivery</li>
-        </ul>
-        <p><strong>Tools:</strong> Google Scholar · Turnitin · Zotero · Grammarly · IBM SPSS · Mendeley · EndNote · Stata · R · LaTeX · Overleaf</p>
-        <a href="https://wa.me/+254104699084" class="btn-primary" target="_blank" style="margin-top:16px;display:inline-flex;">Get Thesis Help →</a>
+<!-- ====== 05 THESIS & RESEARCH ====== -->
+<div class="svc-block" id="thesis">
+  <div class="svc-block-inner">
+    <div class="svc-block-visual">
+      <div class="svc-block-img"><img src="thesis.png" alt="Thesis and Research Writing" loading="lazy"/></div>
+      <div class="svc-img-badge">
+        <div class="svc-img-badge-icon">📝</div>
+        <div class="svc-img-badge-text"><strong>Thesis & Research</strong><span>Undergraduate to PhD Level</span></div>
+      </div>
+    </div>
+    <div class="svc-content">
+      <div class="svc-num">Service 05</div>
+      <h2>Thesis & Research<br/><span>Work Solutions</span></h2>
+      <div class="svc-tagline">From Ideas to Impact</div>
+      <p class="svc-desc">High-quality, original, and thoroughly researched academic work tailored precisely to your requirements — delivered with professionalism and excellence at every academic level. JMasters Global understands the high standards required and the pressure of academic deadlines. We support your research journey from concept to final submission.</p>
+
+      <div class="tick-list">
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Thesis Writing (All Levels)</strong><p>Well-structured, coherent, and plagiarism-free thesis writing across all disciplines — undergraduate, Masters, and PhD.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Research Papers & Journal Articles</strong><p>High-quality research papers from undergraduate through to PhD level, crafted to meet institutional and journal standards.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Literature Review Writing</strong><p>Comprehensive, critical, and well-synthesized literature reviews grounded in current academic sources and databases.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Research Proposal Writing</strong><p>Compelling, well-structured research proposals with clear objectives, methodology, and theoretical framework.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Data Analysis & Interpretation</strong><p>Accurate quantitative or qualitative data analysis with clear, meaningful interpretation of findings and results.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Methodology Chapter Support</strong><p>Research design, philosophical paradigms, sampling, data collection methods, validity, and reliability discussions.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Statistical Modelling & Reporting</strong><p>Advanced statistical modelling with professional, well-formatted reporting suitable for academic submission.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Formatting & Proofreading</strong><p>APA 7th, MLA, Harvard, Chicago, and Vancouver formatting — plus thorough proofreading for grammar and style.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Capstone Projects & Dissertations</strong><p>End-to-end project support from topic selection and research design through to final submission and defence preparation.</p></div></div>
+      </div>
+
+      <div class="two-col-list">
+        <div class="tcl-item">Undergraduate (BA/BSc/BEd)</div>
+        <div class="tcl-item">Masters (MA/MSc/MBA/MEd)</div>
+        <div class="tcl-item">PhD & Doctoral Level</div>
+        <div class="tcl-item">High School Projects</div>
+        <div class="tcl-item">APA · MLA · Harvard · Chicago</div>
+        <div class="tcl-item">Turnitin Plagiarism Checked</div>
+      </div>
+
+      <div class="tools-strip">
+        <span class="ts-pill">Google Scholar</span><span class="ts-pill">Turnitin</span><span class="ts-pill">Zotero</span><span class="ts-pill">Grammarly</span><span class="ts-pill">IBM SPSS</span><span class="ts-pill">Mendeley</span><span class="ts-pill">EndNote</span><span class="ts-pill">Stata</span><span class="ts-pill">R</span><span class="ts-pill">LaTeX</span><span class="ts-pill">Overleaf</span>
+      </div>
+      <div class="svc-cta-row">
+        <a href="https://wa.me/+254104699084" class="btn-svc-wa" target="_blank">📱 Get Thesis Help</a>
+        <a href="contact.html" class="btn-svc-ghost">Request a Free Quote →</a>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- NURSING -->
-  <div class="svc-detail" id="nursing">
-    <div class="svc-detail-inner">
-      <div class="svc-detail-img"><img src="nursing.png" alt="Nursing Services" loading="lazy" /></div>
-      <div class="svc-detail-content">
-        <span class="section-tag">Service 06</span>
-        <h2>Nursing Services —<br /><em>Compassion. Care. Excellence.</em></h2>
-        <p>High-quality, evidence-based nursing support to help students, professionals, and institutions achieve academic and clinical excellence. Our qualified nursing professionals deliver accurate, original work tailored to your specific needs.</p>
-        <ul class="svc-list">
-          <li>Nursing Assignments — properly referenced, delivered on time</li>
-          <li>Care Plans — individualized plans based on NANDA, NIC & NOC frameworks</li>
-          <li>Case Study Analysis — critical thinking with evidence-based solutions</li>
-          <li>Evidence-Based Practice — up-to-date, reliable nursing practice support</li>
-          <li>Research Papers & Projects — nursing research, capstone & scholarly papers</li>
-          <li>Nursing Theories & Models — major theories applied in practice & case studies</li>
-          <li>Clinical Skills Support — clinical procedures, documentation & patient care</li>
-          <li>Exam Preparation — NCLEX, quizzes, tests & comprehensive revision</li>
-        </ul>
-        <p><strong>References:</strong> NANDA International · NIC · NOC · UpToDate · PubMed · CINAHL · Google Scholar</p>
-        <a href="https://wa.me/+254104699084" class="btn-primary" target="_blank" style="margin-top:16px;display:inline-flex;">Get Nursing Help →</a>
+<!-- ====== 06 NURSING ====== -->
+<div class="svc-block" id="nursing">
+  <div class="svc-block-inner">
+    <div class="svc-block-visual">
+      <div class="svc-block-img"><img src="nursing.png" alt="Nursing Services at JMasters Global" loading="lazy"/></div>
+      <div class="svc-img-badge">
+        <div class="svc-img-badge-icon">❤️</div>
+        <div class="svc-img-badge-text"><strong>Nursing Services</strong><span>Compassion · Care · Excellence</span></div>
+      </div>
+    </div>
+    <div class="svc-content">
+      <div class="svc-num">Service 06</div>
+      <h2>Nursing<br/><span>Services</span></h2>
+      <div class="svc-tagline">Empowering Nursing Excellence</div>
+      <p class="svc-desc">High-quality, evidence-based nursing support to help students, professionals, and institutions achieve academic and clinical excellence. Our qualified nursing professionals deliver accurate, well-researched, and original work — tailored to your specific academic or clinical requirements. Every assignment is grounded in current clinical evidence and best practice.</p>
+
+      <div class="tick-list">
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Nursing Assignments</strong><p>Well-researched, properly referenced nursing assignments covering all nursing topics — delivered on time and to your institution's standards.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Care Plan Development</strong><p>Individualized patient care plans based on NANDA-I nursing diagnoses, NIC interventions, and NOC outcomes — detailed and clinically accurate.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Case Study Analysis</strong><p>In-depth clinical case studies with critical thinking, evidence-based reasoning, and patient-centered care recommendations.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Evidence-Based Practice (EBP) Papers</strong><p>Up-to-date EBP assignments grounded in current clinical research, systematic reviews, and peer-reviewed nursing literature.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Nursing Research Papers & Capstone Projects</strong><p>Scholarly nursing research, capstone projects, and systematic reviews written to the highest academic standards.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Nursing Theories & Conceptual Models</strong><p>Application of Nightingale, Orem, Roy, Watson, Henderson, and other major nursing theories to practice and case studies.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Clinical Skills Support</strong><p>Guidance on clinical documentation, nursing procedures, patient assessment frameworks, and clinical decision-making.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>NCLEX & Exam Preparation</strong><p>Comprehensive NCLEX-RN and NCLEX-PN preparation, practice questions, test-taking strategies, and mock examinations.</p></div></div>
+      </div>
+
+      <div class="tools-strip">
+        <span class="ts-pill">NANDA International</span><span class="ts-pill">NIC</span><span class="ts-pill">NOC</span><span class="ts-pill">UpToDate</span><span class="ts-pill">PubMed</span><span class="ts-pill">CINAHL</span><span class="ts-pill">Google Scholar</span><span class="ts-pill">APA 7th</span>
+      </div>
+      <div class="svc-cta-row">
+        <a href="https://wa.me/+254104699084" class="btn-svc-wa" target="_blank">📱 Get Nursing Help</a>
+        <a href="contact.html" class="btn-svc-ghost">Request a Free Quote →</a>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- ONLINE CLASSES -->
-  <div class="svc-detail" id="online">
-    <div class="svc-detail-inner">
-      <div class="svc-detail-img"><img src="online-classes.png" alt="Online Class Services" loading="lazy" /></div>
-      <div class="svc-detail-content">
-        <span class="section-tag">Service 07</span>
-        <h2>Online Class<br /><em>Services</em></h2>
-        <p>Expert academic support for students enrolled in online programs across all major learning platforms. From individual assignments to full course assistance — undergraduate through PhD level, delivered on time, every time.</p>
-        <ul class="svc-list">
-          <li>Blackboard — quizzes, assignments, discussions & full course support</li>
-          <li>Canvas — all assignment types, modules & timed assessments</li>
-          <li>McGraw Hill Connect — homework, tests & SmartBook activities</li>
-          <li>My Open Math — mathematics & statistics coursework</li>
-          <li>Pearson MyLab — all levels, all subjects</li>
-          <li>Cengage MindTap — assignments, quizzes & projects</li>
-          <li>Wiley WileyPLUS — all coursework types</li>
-          <li>Hawks Learning — mathematics & developmental coursework</li>
-        </ul>
-        <p>We also support online quizzes, discussion posts, research papers, final exams, and timed assessments — confidentially and securely.</p>
-        <a href="https://wa.me/+254104699084" class="btn-primary" target="_blank" style="margin-top:16px;display:inline-flex;">Get Online Class Help →</a>
+<!-- ====== 07 ONLINE CLASSES ====== -->
+<div class="svc-block" id="online">
+  <div class="svc-block-inner">
+    <div class="svc-block-visual">
+      <div class="svc-block-img"><img src="online-classes.png" alt="Online Class Services" loading="lazy"/></div>
+      <div class="svc-img-badge">
+        <div class="svc-img-badge-icon">🎓</div>
+        <div class="svc-img-badge-text"><strong>Online Class Services</strong><span>Quality · Reliability · Excellence</span></div>
+      </div>
+    </div>
+    <div class="svc-content">
+      <div class="svc-num">Service 07</div>
+      <h2>Online Class<br/><span>Services</span></h2>
+      <div class="svc-tagline">Empowering Your Academic Journey</div>
+      <p class="svc-desc">Expert academic support for students enrolled in online programs across all major learning management systems. From individual assignments and quizzes to full course assistance — undergraduate through PhD level. All work is delivered confidentially, on time, and to the highest academic standard.</p>
+
+      <div class="tick-list">
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Blackboard</strong><p>Assignments, quizzes, discussion boards, journals, tests, and full course support on Blackboard Learn and Ultra.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Canvas LMS</strong><p>All assignment types, quizzes, modules, discussions, group projects, and timed assessments on Canvas.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>McGraw Hill Connect</strong><p>Homework assignments, SmartBook activities, case studies, LearnSmart modules, and applied learning activities.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>My Open Math</strong><p>Mathematics and statistics coursework, problem sets, timed quizzes, and homework at all skill levels.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Pearson MyLab & Mastering</strong><p>All Pearson products including MyLab Math, MyLab Statistics, MyLab Economics, and subject-specific platforms.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Cengage MindTap & WebAssign</strong><p>MindTap assignments, WebAssign homework, quizzes, chapter activities, and project submissions.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Wiley WileyPLUS</strong><p>All WileyPLUS coursework types — homework, quizzes, orion adaptive practice, and ORION assignments.</p></div></div>
+        <div class="tick-item"><div class="tick">✓</div><div><strong>Hawks Learning & Other Platforms</strong><p>Hawks Learning mathematics, as well as support across D2L Brightspace, Moodle, Schoology, and more.</p></div></div>
+      </div>
+
+      <div class="two-col-list">
+        <div class="tcl-item">Online quizzes and tests</div>
+        <div class="tcl-item">Discussion posts and responses</div>
+        <div class="tcl-item">Weekly assignments and projects</div>
+        <div class="tcl-item">Final exams and timed assessments</div>
+        <div class="tcl-item">Research and writing tasks</div>
+        <div class="tcl-item">Full module and course support</div>
+      </div>
+
+      <div class="svc-cta-row">
+        <a href="https://wa.me/+254104699084" class="btn-svc-wa" target="_blank">📱 Get Online Class Help</a>
+        <a href="contact.html" class="btn-svc-ghost">Request a Free Quote →</a>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="cta-inner">
-      <h2>Not Sure Which Service You Need?</h2>
-      <p>Message us on WhatsApp and describe your project — we'll match you with the right expert within minutes.</p>
-      <div class="cta-actions">
-        <a href="https://wa.me/+254104699084" class="btn-primary" target="_blank">Chat on WhatsApp</a>
-        <a href="mailto:jasoneconomist@gmail.com" class="btn-ghost-light">✉️ jasoneconomist@gmail.com</a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-col brand-col">
-        <img src="logo.png" alt="JMasters Global" class="footer-logo" />
-        <p>Expert academic consultancy worldwide since 2020.</p>
-        <div class="footer-contact">
-          <a href="mailto:jasoneconomist@gmail.com">✉️ jasoneconomist@gmail.com</a>
-          <a href="https://wa.me/+254104699084" target="_blank">📱 +254 104 699 084</a>
+<!-- ====== 08 CV & CAREER ====== -->
+<div class="svc-block" id="cv" style="background:linear-gradient(135deg,#0f1e3a,#1a2d50)">
+  <div class="svc-block-inner">
+    <div class="svc-block-visual">
+      <div class="svc-block-img" style="background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);display:flex;align-items:center;justify-content:center;height:320px;border-radius:16px;">
+        <div style="text-align:center">
+          <div style="font-size:5rem;margin-bottom:16px">🚀</div>
+          <div style="font-family:var(--fd);font-size:1.8rem;color:var(--white);font-weight:700;margin-bottom:8px">CV & Career</div>
+          <div style="font-size:.82rem;color:var(--gold);font-weight:600;letter-spacing:1px;text-transform:uppercase">New Service at JMasters Global</div>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="#economics">Economics Consultancy</a></li>
-          <li><a href="#data">Data Analytics</a></li>
-          <li><a href="#business">Business Analytics</a></li>
-          <li><a href="#health">Health Economics</a></li>
-          <li><a href="#thesis">Thesis & Research</a></li>
-          <li><a href="#nursing">Nursing Services</a></li>
-          <li><a href="#online">Online Class Services</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Guarantees</h4>
-        <ul>
-          <li>✅ Plagiarism-Free</li>
-          <li>🔒 100% Confidential</li>
-          <li>🔄 Free Revisions</li>
-          <li>⏰ On-Time Delivery</li>
-          <li>🎓 PhD-Qualified Experts</li>
-        </ul>
+      <div class="svc-img-badge" style="background:linear-gradient(135deg,#E8A020,#F5C458)">
+        <div class="svc-img-badge-icon">🚀</div>
+        <div class="svc-img-badge-text"><strong style="color:#0B1E3D">CV & Career Guidance</strong><span style="color:rgba(11,30,61,.7)">Launch Your Dream Career</span></div>
       </div>
     </div>
-    <div class="footer-bottom"><p>© 2025 JMasters Global. All rights reserved.</p></div>
-  </footer>
-  <a href="https://wa.me/+254104699084" class="wa-float" target="_blank" aria-label="WhatsApp">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.885l6.222-1.432A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.817 9.817 0 01-5.003-1.366l-.358-.213-3.712.854.87-3.612-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
-  </a>
-  <script src="main.js"></script>
+    <div class="svc-content">
+      <div class="svc-num" style="color:var(--gold)">Service 08 — NEW</div>
+      <h2 style="color:var(--white)">CV & Career<br/><span>Guidance</span></h2>
+      <div class="svc-tagline" style="color:rgba(255,255,255,.5)">Land Your Dream Job or Opportunity</div>
+      <p class="svc-desc" style="color:rgba(255,255,255,.62)">JMasters Global now offers professional CV writing, LinkedIn optimization, and career guidance services. Whether you are a fresh graduate, mid-career professional, or academic seeking your next opportunity — our career specialists craft compelling profiles and strategies that get you noticed and get results.</p>
+
+      <div class="tick-list">
+        <div class="tick-item"><div class="tick" style="border-color:rgba(232,160,32,.5);background:rgba(232,160,32,.1);color:var(--gold)">✓</div><div><strong style="color:var(--white)">Professional CV Writing</strong><p style="color:rgba(255,255,255,.55)">Expertly crafted, ATS-optimized CVs and resumes tailored to your industry, career level, and target roles.</p></div></div>
+        <div class="tick-item"><div class="tick" style="border-color:rgba(232,160,32,.5);background:rgba(232,160,32,.1);color:var(--gold)">✓</div><div><strong style="color:var(--white)">LinkedIn Profile Optimization</strong><p style="color:rgba(255,255,255,.55)">Complete LinkedIn profile overhaul — headline, summary, experience, skills, and keyword optimization for recruiter visibility.</p></div></div>
+        <div class="tick-item"><div class="tick" style="border-color:rgba(232,160,32,.5);background:rgba(232,160,32,.1);color:var(--gold)">✓</div><div><strong style="color:var(--white)">Cover Letter Writing</strong><p style="color:rgba(255,255,255,.55)">Compelling, personalized cover letters for specific job applications that highlight your unique value proposition.</p></div></div>
+        <div class="tick-item"><div class="tick" style="border-color:rgba(232,160,32,.5);background:rgba(232,160,32,.1);color:var(--gold)">✓</div><div><strong style="color:var(--white)">Interview Preparation</strong><p style="color:rgba(255,255,255,.55)">Mock interviews, common and competency-based question coaching, STAR technique, and confidence-building strategies.</p></div></div>
+        <div class="tick-item"><div class="tick" style="border-color:rgba(232,160,32,.5);background:rgba(232,160,32,.1);color:var(--gold)">✓</div><div><strong style="color:var(--white)">Personal Statement Writing</strong><p style="color:rgba(255,255,255,.55)">Powerful personal statements for university applications, scholarship applications, and professional programmes.</p></div></div>
+        <div class="tick-item"><div class="tick" style="border-color:rgba(232,160,32,.5);background:rgba(232,160,32,.1);color:var(--gold)">✓</div><div><strong style="color:var(--white)">Academic CV for Researchers</strong><p style="color:rgba(255,255,255,.55)">Specialized academic CVs for PhD applications, postdoctoral positions, lectureships, and research fellowships.</p></div></div>
+        <div class="tick-item"><div class="tick" style="border-color:rgba(232,160,32,.5);background:rgba(232,160,32,.1);color:var(--gold)">✓</div><div><strong style="color:var(--white)">Career Strategy & Guidance</strong><p style="color:rgba(255,255,255,.55)">Personalized career roadmap, industry insights, job search strategy, networking tips, and professional branding advice.</p></div></div>
+        <div class="tick-item"><div class="tick" style="border-color:rgba(232,160,32,.5);background:rgba(232,160,32,.1);color:var(--gold)">✓</div><div><strong style="color:var(--white)">Scholarship & Fellowship Applications</strong><p style="color:rgba(255,255,255,.55)">Complete application support for scholarships, bursaries, fellowships, and competitive academic programmes worldwide.</p></div></div>
+      </div>
+
+      <div class="svc-cta-row">
+        <a href="https://wa.me/+254104699084" class="btn-svc-wa" target="_blank">📱 Get Career Help Now</a>
+        <a href="contact.html" class="btn-svc-ghost" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)">Request a Free Quote →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCROLLING OTHER SERVICES BAR -->
+<div class="svc-scroll-bar">
+  <h3>Explore All JMasters Global Services</h3>
+  <div class="svc-scroll-track-wrap">
+    <div class="svc-scroll-track" id="svcScrollTrack">
+      <a href="#economics" class="svc-scroll-item"><span>📊</span><strong>Economics Consultancy</strong><small>Service 01</small></a>
+      <a href="#data" class="svc-scroll-item"><span>📈</span><strong>Data Analytics</strong><small>Service 02</small></a>
+      <a href="#business" class="svc-scroll-item"><span>💼</span><strong>Business Analytics</strong><small>Service 03</small></a>
+      <a href="#health" class="svc-scroll-item"><span>🏥</span><strong>Health Economics</strong><small>Service 04</small></a>
+      <a href="#thesis" class="svc-scroll-item"><span>📝</span><strong>Thesis & Research</strong><small>Service 05</small></a>
+      <a href="#nursing" class="svc-scroll-item"><span>❤️</span><strong>Nursing Services</strong><small>Service 06</small></a>
+      <a href="#online" class="svc-scroll-item"><span>🎓</span><strong>Online Classes</strong><small>Service 07</small></a>
+      <a href="#cv" class="svc-scroll-item"><span>🚀</span><strong>CV & Career</strong><small>NEW</small></a>
+      <!-- duplicate for seamless loop -->
+      <a href="#economics" class="svc-scroll-item"><span>📊</span><strong>Economics Consultancy</strong><small>Service 01</small></a>
+      <a href="#data" class="svc-scroll-item"><span>📈</span><strong>Data Analytics</strong><small>Service 02</small></a>
+      <a href="#business" class="svc-scroll-item"><span>💼</span><strong>Business Analytics</strong><small>Service 03</small></a>
+      <a href="#health" class="svc-scroll-item"><span>🏥</span><strong>Health Economics</strong><small>Service 04</small></a>
+      <a href="#thesis" class="svc-scroll-item"><span>📝</span><strong>Thesis & Research</strong><small>Service 05</small></a>
+      <a href="#nursing" class="svc-scroll-item"><span>❤️</span><strong>Nursing Services</strong><small>Service 06</small></a>
+      <a href="#online" class="svc-scroll-item"><span>🎓</span><strong>Online Classes</strong><small>Service 07</small></a>
+      <a href="#cv" class="svc-scroll-item"><span>🚀</span><strong>CV & Career</strong><small>NEW</small></a>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE CTA -->
+<div class="page-cta">
+  <div class="cta-brand" style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:16px">
+    <img src="logo.png" alt="JMasters Global" style="height:48px;filter:brightness(0) invert(1);opacity:.9"/>
+    <span style="font-family:var(--fd);font-size:1.3rem;color:rgba(255,255,255,.9);font-weight:700">JMasters Global</span>
+  </div>
+  <h2>Ready to Get Started?</h2>
+  <p>Join 500+ satisfied clients who have trusted JMasters Global since 2020. Tell us your requirements and get a free quote within minutes — 24 hours a day, 7 days a week.</p>
+  <div class="page-cta-promo">🎉 Use code <strong>JMASTERS20</strong> for 20% off your first order</div>
+  <div class="page-cta-actions">
+    <a href="https://wa.me/+254104699084" class="btn-primary" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.885l6.222-1.432A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.817 9.817 0 01-5.003-1.366l-.358-.213-3.712.854.87-3.612-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+      Chat on WhatsApp
+    </a>
+    <a href="mailto:jasoneconomist@gmail.com" class="btn-outline-light">✉️ jasoneconomist@gmail.com</a>
+    <a href="index.html" class="btn-outline-light">← Back to Home</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand-col">
+      <div class="footer-brand"><img src="logo.png" alt="JMasters Global" class="footer-logo"/><span>JMasters Global</span></div>
+      <p>Expert academic and professional consultancy worldwide since 2020.</p>
+      <div class="footer-contacts">
+        <a href="mailto:jasoneconomist@gmail.com">✉️ jasoneconomist@gmail.com</a>
+        <a href="https://wa.me/+254104699084" target="_blank">📱 +254 104 699 084</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>All Services</h4><ul>
+      <li><a href="#economics">📊 Economics Consultancy</a></li>
+      <li><a href="#data">📈 Data Analytics</a></li>
+      <li><a href="#business">💼 Business Analytics</a></li>
+      <li><a href="#health">🏥 Health Economics</a></li>
+      <li><a href="#thesis">📝 Thesis & Research</a></li>
+      <li><a href="#nursing">❤️ Nursing Services</a></li>
+      <li><a href="#online">🎓 Online Class Services</a></li>
+      <li><a href="#cv">🚀 CV & Career Guidance</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Academic Levels</h4><ul>
+      <li>🏫 High School</li>
+      <li>🎓 Undergraduate</li>
+      <li>📚 Masters Level</li>
+      <li>🔬 PhD & Doctoral</li>
+      <li>🚀 Career & Professional</li>
+    </ul></div>
+    <div class="footer-col"><h4>Our Guarantees</h4><ul>
+      <li>✅ Plagiarism-Free Work</li>
+      <li>🔒 100% Confidential</li>
+      <li>🔄 Free Unlimited Revisions</li>
+      <li>⏰ On-Time Delivery</li>
+      <li>🎓 PhD-Qualified Experts</li>
+      <li>🌍 30+ Countries Served</li>
+      <li>💬 24/7 Support</li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 <strong>JMasters Global</strong>. All rights reserved. <em>Bridging You to Excellence since 2020.</em></p></div>
+</footer>
+
+<a href="https://wa.me/+254104699084" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.885l6.222-1.432A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.817 9.817 0 01-5.003-1.366l-.358-.213-3.712.854.87-3.612-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+</a>
+<script src="main.js"></script>
 </body>
 </html>
