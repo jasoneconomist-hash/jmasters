@@ -694,3 +694,22 @@ ul{list-style:none}
   box-shadow: none !important;
   padding: 0 !important;
 }
+
+/* Remove badge overlays on flyer images completely */
+.svc-img-badge,
+.svc-img-badge-icon,
+.svc-img-badge-text { display: none !important; }
+
+/* Ensure flyer images show fully — no cropping */
+.svc-block-img img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  object-position: center top;
+  display: block;
+  background: transparent;
+}
+
+/* Remove excess bottom margin from visual block */
+.svc-block-visual { margin-bottom: 0; padding-bottom: 0; }
