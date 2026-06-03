@@ -296,3 +296,401 @@ ul{list-style:none}
 @media(max-width:900px){.hero-inner{flex-direction:column;padding:80px 24px 60px}.hero-right{width:100%;max-width:520px}.why-wrap{grid-template-columns:1fr}.services-grid{grid-template-columns:repeat(2,1fr)}.levels-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:768px){.nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:var(--navy2);flex-direction:column;padding:16px;gap:4px;border-top:1px solid rgba(255,255,255,.07)}.nav-links.open{display:flex}.nav-toggle{display:flex}.has-dropdown .dropdown{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:none;background:rgba(255,255,255,.04);padding:4px 0 4px 16px}.trust-inner{justify-content:flex-start}.tsep{display:none}.steps-row{flex-direction:column;align-items:center}.step-arrow{transform:rotate(90deg)}}
 @media(max-width:640px){.services-grid{grid-template-columns:1fr}.levels-grid{grid-template-columns:1fr 1fr}.hero-stats{gap:16px}.sdiv{display:none}.footer-inner{grid-template-columns:1fr;gap:28px}.cta-actions{flex-direction:column;align-items:center}.hero-actions{flex-direction:column}.tcard{min-width:280px;max-width:280px}}
+
+/* =========================================
+   MOBILE FIXES v4
+   ========================================= */
+
+/* --- SERVICE PAGE FLYER IMAGES — MOBILE FULL WIDTH --- */
+@media(max-width:900px){
+  /* Services page blocks stack properly */
+  .svc-block-inner{grid-template-columns:1fr!important;direction:ltr!important;gap:32px}
+  .svc-block:nth-child(even) .svc-block-inner{direction:ltr!important}
+  .svc-block-visual{width:100%}
+  .svc-block-img{width:100%;border-radius:12px;overflow:hidden}
+  .svc-block-img img{width:100%;height:auto!important;min-height:200px;max-height:420px;object-fit:cover;object-position:top center;display:block}
+  /* Push badge inside on mobile */
+  .svc-img-badge{position:relative;bottom:auto;left:auto;margin-top:12px;border-radius:10px;width:100%}
+  /* Tick list readable on mobile */
+  .tick-list{gap:14px}
+  .tick-item{gap:10px;font-size:.88rem}
+  .two-col-list{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr 1fr}
+  /* CTA buttons full width on mobile */
+  .svc-cta-row{flex-direction:column;gap:10px}
+  .btn-svc-wa,.btn-svc-ghost{width:100%;justify-content:center;text-align:center}
+  /* Tools strip wraps nicely */
+  .tools-strip{gap:6px}
+  .ts-pill{font-size:.72rem;padding:4px 10px}
+  /* Service block padding */
+  .svc-block{padding:56px 0}
+  .svc-block-inner{padding:0 20px}
+}
+
+@media(max-width:640px){
+  /* Hero improvements */
+  .hero-inner{padding:72px 16px 48px;gap:32px}
+  .hero-brand-block{padding:12px 14px;gap:12px}
+  .hero-logo{height:48px}
+  .hero-brand-name{font-size:1.25rem}
+  .hero-title{font-size:2rem!important}
+  .hero-sub{font-size:.9rem}
+  .hero-promo-box{padding:10px 14px;gap:8px}
+  .hero-actions{flex-direction:column;gap:10px;align-items:stretch}
+  .hero-actions .btn-primary,.hero-actions .btn-outline,.hero-actions .btn-login-hero{width:100%;justify-content:center}
+  .hero-stats{gap:12px;flex-wrap:wrap}
+  .sdiv{display:none}
+  .stat-n{font-size:1.6rem}
+
+  /* Services float card on mobile */
+  .services-float-card{padding:16px}
+  .sfc-item{padding:6px 8px}
+  .sfc-item strong{font-size:.8rem}
+  .sfc-item small{font-size:.68rem}
+
+  /* Services grid 1 col */
+  .services-grid{grid-template-columns:1fr!important}
+  .svc-img{height:200px}
+  .svc-img img{height:200px;object-position:top center}
+
+  /* Academic levels 2 col */
+  .levels-grid{grid-template-columns:1fr 1fr}
+  .level-card{padding:20px 14px}
+  .lc-icon{font-size:1.8rem}
+  .level-card h3{font-size:1rem}
+  .level-card p{font-size:.78rem}
+
+  /* Testimonial cards */
+  .tcard{min-width:calc(100vw - 48px);max-width:calc(100vw - 48px)}
+
+  /* Why section */
+  .why-wrap{grid-template-columns:1fr;gap:40px}
+  .why-stats-grid{grid-template-columns:repeat(3,1fr);gap:10px}
+  .ws{padding:14px 10px}
+  .ws-n{font-size:1.6rem}
+
+  /* Footer */
+  .footer-inner{grid-template-columns:1fr;gap:28px}
+  .footer-brand-col p{font-size:.82rem}
+
+  /* CTA */
+  .cta-actions{flex-direction:column;align-items:center;gap:10px}
+  .cta-actions .btn-primary,.cta-actions .btn-outline-light{width:100%;max-width:320px;justify-content:center}
+
+  /* Steps */
+  .steps-row{flex-direction:column;align-items:center;gap:16px}
+  .step-arrow{transform:rotate(90deg);margin:0}
+  .step-card{max-width:100%;min-width:unset;padding:0 8px}
+
+  /* Page hero */
+  .page-hero{padding:110px 16px 56px}
+  .page-hero h1{font-size:2rem!important}
+  .page-hero-nav{gap:6px}
+  .phero-link{font-size:.72rem;padding:6px 12px}
+
+  /* Services page content */
+  .svc-content h2{font-size:1.8rem!important}
+  .svc-desc{font-size:.88rem}
+
+  /* Service scroll bar */
+  .svc-scroll-item{padding:8px 14px}
+  .svc-scroll-item strong{font-size:.76rem}
+  .svc-scroll-item small{display:none}
+}
+
+@media(max-width:400px){
+  .hero-title{font-size:1.75rem!important}
+  .section-title{font-size:1.6rem!important}
+  .levels-grid{grid-template-columns:1fr}
+  .why-stats-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ---- LOGO — TRANSPARENT / NO WHITE BOX IN NAV & HERO ---- */
+/* Nav logo: remove white background box */
+.nav-logo img{
+  height:44px;
+  width:auto;
+  /* mix-blend-mode makes white areas transparent over dark backgrounds */
+  mix-blend-mode:screen;
+  filter:brightness(1.15) drop-shadow(0 1px 6px rgba(0,0,0,.3));
+}
+
+/* Hero logo: fully transparent blended */
+.hero-logo{
+  height:60px;
+  width:auto;
+  mix-blend-mode:screen;
+  filter:brightness(1.2) drop-shadow(0 2px 12px rgba(0,0,0,.4));
+}
+
+/* Footer logo: lighten so white parts don't show box */
+.footer-logo{
+  height:52px;
+  width:auto;
+  mix-blend-mode:screen;
+  filter:brightness(1.15);
+}
+
+/* Modal logo: keep normal (white background modal) */
+.modal-logo img{
+  mix-blend-mode:normal;
+  filter:none;
+}
+
+/* Services page image badge logo: keep normal */
+.svc-img-badge img{
+  mix-blend-mode:normal;
+  filter:none;
+}
+
+/* ---- HERO BRAND BLOCK: transparent bg to blend logo ---- */
+.hero-brand-block{
+  background:rgba(255,255,255,.04);
+  border-color:rgba(255,255,255,.08);
+}
+
+/* ---- FLYER IMAGES: ensure full visibility on all screens ---- */
+.svc-block-img img{
+  width:100%;
+  height:300px;
+  object-fit:cover;
+  object-position:top center;
+}
+
+@media(min-width:901px){
+  .svc-block-img img{
+    height:340px;
+  }
+}
+
+/* Make sure service images aren't clipped on mobile */
+@media(max-width:640px){
+  .svc-block-img img{
+    height:auto;
+    min-height:220px;
+    max-height:none;
+    aspect-ratio:16/9;
+    object-fit:cover;
+    object-position:top;
+  }
+  .svc-block-img{
+    border-radius:12px;
+    overflow:hidden;
+  }
+  /* Remove image badge positioning on very small screens */
+  .svc-img-badge{
+    padding:10px 14px;
+    gap:8px;
+  }
+  .svc-img-badge-text strong{font-size:.82rem}
+  .svc-img-badge-text span{font-size:.7rem}
+}
+
+/* ============================================
+   MOBILE FIXES v4 — Flyer sizing & layout
+   ============================================ */
+
+/* Services page — flyer images on mobile */
+@media (max-width: 768px) {
+
+  /* Full-width flyer images on mobile */
+  .svc-block-inner {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+    direction: ltr !important;
+  }
+  .svc-block-inner > * { direction: ltr !important; }
+
+  .svc-block-visual {
+    width: 100%;
+    margin-bottom: 32px;
+  }
+
+  .svc-block-img {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .svc-block-img img {
+    width: 100%;
+    height: auto !important;        /* Let image show at full height */
+    min-height: 240px;
+    max-height: none !important;    /* Remove any height cap */
+    object-fit: contain !important; /* Show full flyer, no cropping */
+    object-position: center !important;
+    background: #f0f4ff;
+    display: block;
+  }
+
+  .svc-img-badge {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-top: -8px;
+    border-radius: 0 0 12px 12px;
+    border-top: none;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Service content padding on mobile */
+  .svc-content { padding: 0 16px 24px; }
+  .svc-content h2 { font-size: 1.8rem; }
+  .svc-block { padding: 48px 0; }
+  .svc-block-inner { padding: 0 !important; }
+
+  /* Two col list to single on mobile */
+  .two-col-list { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+
+  /* Page hero nav pills wrap nicely */
+  .page-hero-nav { gap: 6px; padding: 0 12px; }
+  .phero-link { font-size: .72rem; padding: 6px 11px; }
+}
+
+/* ---- HOME PAGE HERO MOBILE ---- */
+@media (max-width: 768px) {
+  .hero-inner {
+    flex-direction: column;
+    padding: 72px 16px 48px;
+    gap: 32px;
+  }
+
+  .hero-right { width: 100%; }
+
+  .services-float-card {
+    padding: 16px;
+  }
+
+  .sfc-list { gap: 6px; }
+  .sfc-item { padding: 7px 8px; }
+  .sfc-item strong { font-size: .78rem; }
+  .sfc-item small { font-size: .67rem; }
+
+  .hero-title { font-size: 2rem; }
+  .hero-brand-name { font-size: 1.3rem; }
+  .hero-brand-block { padding: 10px 12px; gap: 10px; }
+  .hero-logo { height: 50px; }
+
+  .hero-promo-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 10px 14px;
+  }
+
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions a, .hero-actions button { justify-content: center; width: 100%; }
+
+  .hero-stats { gap: 12px; flex-wrap: wrap; }
+  .sdiv { display: none; }
+  .stat { min-width: 60px; }
+  .stat-n { font-size: 1.6rem; }
+}
+
+/* ---- SERVICES GRID MOBILE ---- */
+@media (max-width: 768px) {
+  .services-grid { grid-template-columns: 1fr !important; gap: 16px; }
+  .levels-grid { grid-template-columns: 1fr 1fr !important; gap: 12px; }
+  .level-card { padding: 20px 14px; }
+  .lc-icon { font-size: 1.8rem; }
+  .level-card h3 { font-size: 1rem; }
+  .level-card p { font-size: .78rem; }
+}
+
+/* ---- STEPS MOBILE ---- */
+@media (max-width: 768px) {
+  .steps-row { flex-direction: column; align-items: center; gap: 8px; }
+  .step-arrow { transform: rotate(90deg); margin: 0; font-size: 1.2rem; }
+  .step-card { max-width: 100%; width: 100%; padding: 0 24px; }
+}
+
+/* ---- WHY SECTION MOBILE ---- */
+@media (max-width: 768px) {
+  .why-wrap { grid-template-columns: 1fr !important; gap: 40px; }
+  .why-stats-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .ws { padding: 14px 8px; }
+  .ws-n { font-size: 1.6rem; }
+}
+
+/* ---- TESTIMONIALS MOBILE ---- */
+@media (max-width: 640px) {
+  .tcard { min-width: calc(100vw - 72px); max-width: calc(100vw - 72px); }
+}
+
+/* ---- TRUST BAR MOBILE ---- */
+@media (max-width: 640px) {
+  .trust-inner { justify-content: flex-start; gap: 10px; }
+  .tsep { display: none; }
+  .ti { font-size: .76rem; }
+}
+
+/* ---- FOOTER MOBILE ---- */
+@media (max-width: 768px) {
+  .footer-inner { grid-template-columns: 1fr !important; gap: 28px; }
+  .footer-brand-col p { font-size: .82rem; }
+}
+
+/* ---- NAV LOGO MOBILE ---- */
+@media (max-width: 640px) {
+  .nav-logo img { height: 38px; }
+  .nav-logo span { font-size: .82rem; }
+  .nav-inner { padding: 0 14px; height: 60px; }
+}
+
+/* ---- PAGE CTA MOBILE ---- */
+@media (max-width: 640px) {
+  .page-cta-actions { flex-direction: column; align-items: stretch; }
+  .page-cta-actions a { text-align: center; justify-content: center; }
+  .cta-actions { flex-direction: column; align-items: stretch; }
+  .cta-actions a, .cta-actions button { justify-content: center; }
+}
+
+/* ---- TICKER MOBILE ---- */
+@media (max-width: 640px) {
+  .ticker-track span { font-size: .76rem; }
+  .promo-ticker { padding: 8px 0; }
+}
+
+
+/* ---- TRANSPARENT LOGO HERO BLOCK ---- */
+.hero-brand-block {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(12px);
+  width: fit-content;
+}
+
+.hero-logo {
+  height: 72px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  /* No drop-shadow needed — transparent background blends naturally */
+  filter: drop-shadow(0 0 12px rgba(232,160,32,0.25));
+}
+
+/* On very small screens */
+@media (max-width: 480px) {
+  .hero-logo { height: 54px; }
+  .hero-brand-block { padding: 10px 14px; gap: 10px; }
+  .hero-brand-name { font-size: 1.2rem; }
+}
+
+/* Nav logo transparent — remove white box */
+.nav-logo img {
+  height: 46px;
+  width: auto;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
