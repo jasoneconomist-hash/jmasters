@@ -713,3 +713,72 @@ ul{list-style:none}
 
 /* Remove excess bottom margin from visual block */
 .svc-block-visual { margin-bottom: 0; padding-bottom: 0; }
+
+/* ============================================
+   IMAGE DISPLAY FIXES v8 — No cropping ever
+   ============================================ */
+
+/* All service block images — show full flyer */
+.svc-block-img img {
+  width: 100%;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center top !important;
+  display: block;
+  background: #f0f4ff;
+}
+
+/* Full-height flyer class — wider, shows the entire poster */
+.svc-img-full img {
+  width: 100%;
+  height: auto !important;
+  object-fit: contain !important;
+  background: transparent !important;
+}
+
+.svc-block-img {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #f0f4ff;
+}
+
+/* CV dark background */
+#cv .svc-block-img {
+  background: linear-gradient(135deg, #0f1e3a, #1a2d50) !important;
+}
+
+/* Accounting finance — light background to match flyer */
+#finance .svc-block-img {
+  background: #f8f9ff !important;
+}
+
+/* CS — dark bg matches code theme */
+#cs .svc-block-img {
+  background: #0B1E3D !important;
+}
+
+/* Mobile — stack image above content, full width */
+@media (max-width: 900px) {
+  .svc-block-inner {
+    grid-template-columns: 1fr !important;
+    direction: ltr !important;
+    gap: 24px !important;
+    padding: 0 16px !important;
+  }
+  .svc-block-inner > * { direction: ltr !important; }
+
+  .svc-block-visual {
+    width: 100%;
+  }
+
+  .svc-block-img img {
+    width: 100%;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  .svc-content {
+    padding: 0 0 24px;
+  }
+}
