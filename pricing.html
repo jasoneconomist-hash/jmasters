@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pricing | JMasters Global — Transparent Academic Support Costs</title>
+  <meta name="description" content="See exactly what your JMasters Global support costs. Choose academic level, service type, page count and deadline for a live estimate. No surprises."/>
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MMWP33FQR0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MMWP33FQR0');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* PRICING PAGE */
+    .pricing-hero{background:var(--navy);padding:130px 24px 64px;text-align:center;position:relative;overflow:hidden}
+    .pricing-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(139,92,246,.18),transparent 65%)}
+    .pricing-hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+    .pricing-hero h1{font-family:var(--fd);font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;color:var(--white);line-height:1.12;margin-bottom:14px}
+    .pricing-hero h1 span{color:var(--gold)}
+    .pricing-hero p{color:rgba(255,255,255,.62);font-size:1rem;line-height:1.78;max-width:520px;margin:0 auto}
+
+    /* CALCULATOR */
+    .calc-section{background:#f7f5f0;padding:72px 0 96px}
+    .calc-wrap{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 390px;gap:48px;align-items:start}
+
+    .step-label{display:flex;align-items:center;gap:12px;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#9a8c7e;margin-bottom:16px;margin-top:40px}
+    .step-label:first-child{margin-top:0}
+    .step-letter{width:24px;height:24px;border-radius:50%;background:#c8b8a2;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0}
+    .step-label::after{content:'';flex:1;height:1px;background:#ddd6ce}
+
+    /* Option cards */
+    .option-grid{display:grid;gap:12px}
+    .og-2{grid-template-columns:1fr 1fr}
+    .og-3{grid-template-columns:1fr 1fr 1fr}
+    .og-4{grid-template-columns:repeat(4,1fr)}
+    .opt-card{background:#fff;border:1.5px solid #e5e0d8;border-radius:12px;padding:18px 16px;cursor:pointer;transition:all .22s ease;position:relative;user-select:none}
+    .opt-card:hover{border-color:#c8a96e;background:#fffbf5}
+    .opt-card.selected{border-color:#b87333;background:#fff8f0;box-shadow:0 0 0 3px rgba(184,115,51,.12)}
+    .opt-tag{display:inline-block;background:#f0ebe3;color:#9a8c7e;font-size:.62rem;font-weight:800;letter-spacing:.5px;padding:3px 8px;border-radius:6px;margin-bottom:8px;text-transform:uppercase}
+    .opt-card.selected .opt-tag{background:#b87333;color:#fff}
+    .opt-title{font-family:var(--fd);font-size:1.1rem;font-weight:700;color:#1a1209;margin-bottom:3px}
+    .opt-sub{font-size:.76rem;color:#9a8c7e;margin-bottom:8px;line-height:1.4}
+    .opt-price{font-size:.85rem;font-weight:700;color:#b87333}
+    .opt-save{font-size:.76rem;color:#059669;font-weight:600}
+    .opt-surcharge{font-size:.76rem;color:#dc2626;font-weight:600}
+
+    /* Scope */
+    .scope-row{display:flex;gap:14px}
+    .scope-opt{flex:1;background:#fff;border:1.5px solid #e5e0d8;border-radius:12px;padding:16px 18px;cursor:pointer;transition:all .22s;display:flex;align-items:center;gap:12px;user-select:none}
+    .scope-opt:hover{border-color:#c8a96e}
+    .scope-opt.selected{border-color:#b87333;background:#fff8f0;box-shadow:0 0 0 3px rgba(184,115,51,.12)}
+    .s-radio{width:20px;height:20px;border-radius:50%;border:2px solid #ccc;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
+    .scope-opt.selected .s-radio{border-color:#b87333;background:#b87333}
+    .scope-opt.selected .s-radio::after{content:'';width:8px;height:8px;border-radius:50%;background:#fff;display:block}
+    .s-title{font-family:var(--fd);font-size:1rem;font-weight:700;color:#1a1209}
+    .s-sub{font-size:.76rem;color:#9a8c7e}
+    .s-badge{margin-left:auto;font-size:.72rem;color:#059669;font-weight:700;white-space:nowrap}
+
+    /* Slider */
+    .slider-wrap{background:#fff;border:1.5px solid #e5e0d8;border-radius:12px;padding:24px}
+    .slider-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+    .page-num{font-family:var(--fd);font-size:3.2rem;font-weight:900;color:#1a1209;line-height:1}
+    .page-lbl{font-size:.9rem;color:#9a8c7e;font-weight:400;font-family:var(--fb);margin-left:6px}
+    .word-count{text-align:right;font-size:.8rem;color:#9a8c7e}
+    .word-count strong{color:#1a1209}
+    input[type=range]{width:100%;-webkit-appearance:none;height:5px;border-radius:3px;background:linear-gradient(to right,#b87333 var(--pct,8%),#e5e0d8 var(--pct,8%));outline:none;cursor:pointer;margin:4px 0}
+    input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#b87333;cursor:pointer;box-shadow:0 2px 8px rgba(184,115,51,.45);transition:.15s}
+    input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.15)}
+    .slider-hint{font-size:.76rem;color:#b0a898;margin-top:10px}
+
+    /* Promo box */
+    .promo-input-box{background:#fff8f0;border:1.5px solid #c8a96e;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px;margin-top:24px}
+    .promo-input-box span{font-size:1.4rem}
+    .pib-text strong{display:block;font-size:.9rem;font-weight:700;color:#1a1209;margin-bottom:2px}
+    .pib-text small{font-size:.76rem;color:#9a8c7e}
+    .pib-code{background:#b87333;color:#fff;font-weight:800;font-size:.8rem;padding:4px 10px;border-radius:6px;letter-spacing:.5px}
+
+    /* LIVE ESTIMATE CARD */
+    .estimate-card{background:#1a1209;border-radius:18px;padding:28px;position:sticky;top:90px;color:#fff}
+    .ec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+    .ec-live{display:flex;align-items:center;gap:8px;font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#6b5e50}
+    .ec-dot{width:8px;height:8px;border-radius:50%;background:#22C55E;animation:ecpulse 2s infinite}
+    @keyframes ecpulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(34,197,94,.4)}50%{opacity:.6;box-shadow:0 0 0 6px rgba(34,197,94,0)}}
+    .ec-ref{font-size:.68rem;color:#3d3020;font-family:monospace;letter-spacing:1px}
+    .ec-scope-lbl{font-size:.75rem;color:#6b5e50;margin-bottom:4px;text-transform:uppercase;letter-spacing:1px}
+    .ec-scope{font-family:var(--fd);font-size:1.2rem;color:#fff;font-weight:700;margin-bottom:18px}
+    .ec-from{font-size:.68rem;color:#6b5e50;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}
+    .ec-price{font-family:var(--fd);font-size:4rem;font-weight:900;color:#b87333;line-height:1;margin-bottom:2px;transition:all .3s}
+    .ec-price-sub{font-size:.76rem;color:#4d3d28;margin-bottom:20px;line-height:1.5}
+    .ec-div{border:none;border-top:1px solid #2e2010;margin:14px 0}
+    .ec-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
+    .ec-rl{font-size:.78rem;color:#6b5e50}
+    .ec-rv{font-size:.78rem;color:#c8a96e;font-weight:600;text-align:right;max-width:160px}
+    .ec-total-row{display:flex;justify-content:space-between;align-items:center;margin:16px 0}
+    .ec-tl{font-size:.95rem;font-weight:700;color:#fff}
+    .ec-tv{font-family:var(--fd);font-size:1.6rem;color:#b87333;font-weight:700;transition:all .3s}
+    .ec-note{font-size:.72rem;color:#4d3d28;line-height:1.65;margin-bottom:20px}
+    .ec-cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:#b87333;color:#fff;text-align:center;font-family:var(--fb);font-weight:700;font-size:.92rem;padding:14px;border-radius:50px;border:none;cursor:pointer;transition:.2s;text-decoration:none}
+    .ec-cta:hover{background:#c8a96e;transform:translateY(-2px)}
+    .ec-alt{display:block;text-align:center;font-size:.74rem;color:#4d3d28;margin-top:10px}
+
+    /* GUARANTEES */
+    .guar-section{background:#fff;padding:96px 0}
+    .guar-inner{max-width:1100px;margin:0 auto;padding:0 24px}
+    .guar-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:48px}
+    .guar-card{background:var(--off);border:1.5px solid var(--border);border-radius:16px;padding:32px;transition:var(--tr)}
+    .guar-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:var(--shx)}
+    .guar-icon{font-size:2rem;margin-bottom:14px;display:block}
+    .guar-card h3{font-family:var(--fd);font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:10px}
+    .guar-card p{font-size:.88rem;color:var(--muted);line-height:1.78}
+
+    /* NEW SERVICES SHOWCASE */
+    .new-svc-section{background:var(--off);padding:80px 0}
+    .new-svc-inner{max-width:1200px;margin:0 auto;padding:0 24px}
+    .new-svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px}
+    .new-svc-card{border-radius:16px;overflow:hidden;box-shadow:var(--shx);transition:var(--tr)}
+    .new-svc-card:hover{transform:translateY(-6px)}
+    .new-svc-card img{width:100%;display:block;height:auto}
+    .new-svc-card-body{background:var(--navy);padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .new-svc-card-body h3{font-family:var(--fd);font-size:1.1rem;color:#fff;font-weight:700;margin-bottom:4px}
+    .new-svc-card-body p{font-size:.78rem;color:rgba(255,255,255,.55)}
+    .new-svc-card-body a{background:var(--gold);color:var(--navy);font-weight:700;font-size:.8rem;padding:9px 16px;border-radius:50px;white-space:nowrap;transition:var(--tr);flex-shrink:0}
+    .new-svc-card-body a:hover{background:var(--gold2);transform:translateY(-2px)}
+
+    @media(max-width:960px){
+      .calc-wrap{grid-template-columns:1fr}
+      .estimate-card{position:static}
+      .og-4{grid-template-columns:repeat(2,1fr)}
+      .guar-grid{grid-template-columns:1fr}
+      .new-svc-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:600px){
+      .og-2{grid-template-columns:1fr}
+      .og-3{grid-template-columns:1fr 1fr}
+      .scope-row{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+
+<!-- PROMO TICKER -->
+<div class="promo-ticker">
+  <div class="ticker-track">
+    <span>🎉 <strong>20% OFF</strong> first order — code <strong>JMASTERS20</strong></span>
+    <span>⚡ <strong>FREE CONSULTATION</strong> — WhatsApp us now</span>
+    <span>💻 <strong>NEW:</strong> Computer Science services now available</span>
+    <span>💰 <strong>NEW:</strong> Finance & Accounting services now available</span>
+    <span>🌍 <strong>500+ clients</strong> across 30+ countries since 2020</span>
+    <span>🎉 <strong>20% OFF</strong> first order — code <strong>JMASTERS20</strong></span>
+    <span>⚡ <strong>FREE CONSULTATION</strong> — WhatsApp us now</span>
+    <span>💻 <strong>NEW:</strong> Computer Science services now available</span>
+    <span>💰 <strong>NEW:</strong> Finance & Accounting services now available</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="logo-transparent.png" alt="JMasters Global"/><span>JMasters <strong>Global</strong></span></a>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="pricing.html" class="active">Pricing</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://wa.me/+254104699084" class="nav-cta" target="_blank">WhatsApp Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="pricing-hero">
+  <div class="pricing-hero-inner">
+    <span class="section-tag">Transparent Pricing</span>
+    <h1>See What Your<br/><span>Support Costs.</span></h1>
+    <p>An honest estimate up front — academic level, service type, page count, and deadline. No surprise add-ons. Your final quote is locked before any work begins.</p>
+  </div>
+</div>
+
+<!-- CALCULATOR -->
+<section class="calc-section">
+  <div class="calc-wrap">
+    <div class="calc-left">
+
+      <!-- A: Academic Level -->
+      <div class="step-label"><span class="step-letter">A</span>Academic Level</div>
+      <div class="option-grid og-2" id="levelGrid">
+        <div class="opt-card selected" data-rate="8"><div class="opt-tag">HS</div><div class="opt-title">High School</div><div class="opt-sub">O-Level · A-Level · IB</div><div class="opt-price">From $8/pg</div></div>
+        <div class="opt-card" data-rate="14"><div class="opt-tag">UG</div><div class="opt-title">Undergraduate</div><div class="opt-sub">Associate · Bachelor's</div><div class="opt-price">From $14/pg</div></div>
+        <div class="opt-card" data-rate="19"><div class="opt-tag">MS</div><div class="opt-title">Master's</div><div class="opt-sub">MA · MS · MBA · MEd</div><div class="opt-price">From $19/pg</div></div>
+        <div class="opt-card" data-rate="23"><div class="opt-tag">ADV</div><div class="opt-title">Advanced / Pro</div><div class="opt-sub">NP · JD · PsyD · Specialist</div><div class="opt-price">From $23/pg</div></div>
+        <div class="opt-card" data-rate="27"><div class="opt-tag">DOC</div><div class="opt-title">Doctoral · Practice</div><div class="opt-sub">DNP · EdD · Capstone</div><div class="opt-price">From $27/pg</div></div>
+        <div class="opt-card" data-rate="30"><div class="opt-tag">PHD</div><div class="opt-title">Doctoral · Research</div><div class="opt-sub">PhD · Dissertation</div><div class="opt-price">From $30/pg</div></div>
+      </div>
+
+      <!-- B: Scope -->
+      <div class="step-label"><span class="step-letter">B</span>Scope of Support</div>
+      <div class="scope-row" id="scopeRow">
+        <div class="scope-opt selected" data-mult="1.0"><div class="s-radio"></div><div><div class="s-title">One Assignment</div><div class="s-sub">Single paper, quiz, or task</div></div></div>
+        <div class="scope-opt" data-mult="0.94"><div class="s-radio"></div><div><div class="s-title">Full Course</div><div class="s-sub">All assignments for a course</div></div><div class="s-badge">Save 6%</div></div>
+      </div>
+
+      <!-- C: Service Type -->
+      <div class="step-label"><span class="step-letter">C</span>Service Type</div>
+      <div class="option-grid og-3" id="svcGrid">
+        <div class="opt-card selected" data-smult="1.00" data-sname="Academic Writing"><div class="opt-title" style="font-size:.95rem">📝 Writing &amp; Research</div><div class="opt-sub">Essays, thesis, dissertations</div><div class="opt-price">Base rate</div></div>
+        <div class="opt-card" data-smult="1.15" data-sname="Data Analytics"><div class="opt-title" style="font-size:.95rem">📊 Data Analytics</div><div class="opt-sub">SPSS, Stata, R, Python</div><div class="opt-price">+15%</div></div>
+        <div class="opt-card" data-smult="1.20" data-sname="Computer Science"><div class="opt-title" style="font-size:.95rem">💻 Computer Science</div><div class="opt-sub">Programming &amp; projects</div><div class="opt-price">+20%</div></div>
+        <div class="opt-card" data-smult="1.10" data-sname="Nursing Services"><div class="opt-title" style="font-size:.95rem">❤️ Nursing</div><div class="opt-sub">Care plans, NCLEX, EBP</div><div class="opt-price">+10%</div></div>
+        <div class="opt-card" data-smult="1.15" data-sname="Economics &amp; Finance"><div class="opt-title" style="font-size:.95rem">📈 Economics &amp; Finance</div><div class="opt-sub">Econometrics, accounting</div><div class="opt-price">+15%</div></div>
+        <div class="opt-card" data-smult="1.10" data-sname="Business Analytics"><div class="opt-title" style="font-size:.95rem">💼 Business Analytics</div><div class="opt-sub">Power BI, predictive models</div><div class="opt-price">+10%</div></div>
+        <div class="opt-card" data-smult="1.10" data-sname="Health Economics"><div class="opt-title" style="font-size:.95rem">🏥 Health Economics</div><div class="opt-sub">CEA, QALY, HTA analysis</div><div class="opt-price">+10%</div></div>
+        <div class="opt-card" data-smult="0.75" data-sname="Online Class Support"><div class="opt-title" style="font-size:.95rem">🎓 Online Classes</div><div class="opt-sub">Canvas, Blackboard, Pearson</div><div class="opt-price">Per task</div></div>
+        <div class="opt-card" data-smult="0.60" data-sname="CV &amp; Career Guidance"><div class="opt-title" style="font-size:.95rem">🚀 CV &amp; Career</div><div class="opt-sub">CV writing, LinkedIn, interview</div><div class="opt-price">Flat rate</div></div>
+      </div>
+
+      <!-- D: Pages -->
+      <div class="step-label"><span class="step-letter">D</span>Estimated Length</div>
+      <div class="slider-wrap">
+        <div class="slider-top">
+          <div><span class="page-num" id="pageNum">5</span><span class="page-lbl">pages</span></div>
+          <div class="word-count">Approx. <strong id="wordCount">1,250</strong> words</div>
+        </div>
+        <input type="range" id="pageSlider" min="1" max="60" value="5" step="1"/>
+        <div class="slider-hint">Typical assignment: 3–8 pages · Thesis: 40–120 pages · Drag to match your brief.</div>
+      </div>
+
+      <!-- E: Deadline -->
+      <div class="step-label"><span class="step-letter">E</span>Deadline</div>
+      <div class="option-grid og-3" id="deadGrid">
+        <div class="opt-card" data-dmult="0.92" data-dname="Relaxed · 10+ days"><div class="opt-title">Relaxed</div><div class="opt-sub">10+ days</div><div class="opt-save">–8% discount</div></div>
+        <div class="opt-card selected" data-dmult="1.00" data-dname="Standard · 3–7 days"><div class="opt-title">Standard</div><div class="opt-sub">3–7 days</div><div class="opt-price">Base rate</div></div>
+        <div class="opt-card" data-dmult="1.35" data-dname="Rush · 24–48 hrs"><div class="opt-title">Rush</div><div class="opt-sub">24–48 hrs</div><div class="opt-surcharge">+35% surcharge</div></div>
+      </div>
+
+      <!-- Promo -->
+      <div class="promo-input-box">
+        <span>🎉</span>
+        <div class="pib-text">
+          <strong>First Order? Use code <span class="pib-code">JMASTERS20</span></strong>
+          <small>20% off your first order — just mention the code when you WhatsApp us.</small>
+        </div>
+      </div>
+
+    </div><!-- /calc-left -->
+
+    <!-- LIVE ESTIMATE -->
+    <div class="calc-right">
+      <div class="estimate-card">
+        <div class="ec-header">
+          <div class="ec-live"><div class="ec-dot"></div>Live Estimate</div>
+          <div class="ec-ref">JM-Q01</div>
+        </div>
+        <div class="ec-scope-lbl">Scope</div>
+        <div class="ec-scope" id="ecScope">One Assignment</div>
+        <div class="ec-from">From</div>
+        <div class="ec-price" id="ecPrice">$40</div>
+        <div class="ec-price-sub" id="ecSub">USD total · High School · Standard</div>
+        <hr class="ec-div"/>
+        <div class="ec-row"><span class="ec-rl">Academic level</span><span class="ec-rv" id="ecLevel">High School</span></div>
+        <div class="ec-row"><span class="ec-rl">Service type</span><span class="ec-rv" id="ecSvc">Academic Writing</span></div>
+        <div class="ec-row"><span class="ec-rl">Estimated length</span><span class="ec-rv" id="ecPages">5 pages</span></div>
+        <div class="ec-row"><span class="ec-rl">Deadline</span><span class="ec-rv" id="ecDead">Standard · 3–7 days</span></div>
+        <div class="ec-row"><span class="ec-rl">Effective rate</span><span class="ec-rv" id="ecRate">$8.00/pg</span></div>
+        <hr class="ec-div"/>
+        <div class="ec-total-row"><span class="ec-tl">Estimated total</span><span class="ec-tv" id="ecTotal">~$40</span></div>
+        <p class="ec-note">Just an estimate — your confirmed quote arrives within 30 minutes of contacting us and never exceeds it without your approval. Code <strong style="color:#b87333">JMASTERS20</strong> saves 20% on your first order.</p>
+        <a href="https://wa.me/+254104699084?text=Hi%20JMasters%20Global!%20I%27d%20like%20a%20quote%20for%20my%20assignment." class="ec-cta" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.885l6.222-1.432A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.817 9.817 0 01-5.003-1.366l-.358-.213-3.712.854.87-3.612-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+          Get Exact Quote on WhatsApp
+        </a>
+        <span class="ec-alt">or email: jasoneconomist@gmail.com</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEES -->
+<section class="guar-section">
+  <div class="guar-inner">
+    <div class="section-head" style="text-align:left">
+      <span class="section-tag">Your Success, Assured</span>
+      <h2 class="section-title">We Don't Just Promise.<br/><span style="color:var(--gold)">We Put It in Writing.</span></h2>
+      <p class="section-sub" style="margin:0;max-width:580px">The reason 500+ clients have stayed with JMasters Global since 2020 isn't just the quality — it's the certainty. Four guarantees back every engagement.</p>
+    </div>
+    <div class="guar-grid">
+      <div class="guar-card"><span class="guar-icon">🎓</span><h3>PhD-Qualified Experts, Every Time</h3><p>Your work is handled by a specialist in your exact field — economics, nursing, CS, data analytics, or finance. Not a generalist. The expert who knows your subject, academic level, and institution's standards inside-out.</p></div>
+      <div class="guar-card"><span class="guar-icon">🔄</span><h3>Free Revisions Until You're Sure</h3><p>Unlimited free revisions within scope. We refine until the work fully meets your requirements and you'd confidently submit it. No extra charge, no questions — just results you're proud of.</p></div>
+      <div class="guar-card"><span class="guar-icon">✅</span><h3>Original & Integrity-First Always</h3><p>Every deliverable is screened for plagiarism using Turnitin. You receive the report with your completed work. We never reuse or resell — your assignment is written from scratch, for you alone, every time.</p></div>
+      <div class="guar-card"><span class="guar-icon">🔒</span><h3>100% Confidential, Guaranteed</h3><p>Your identity, institution, and project details are never shared with anyone. Complete discretion is guaranteed on every engagement — from first message to final delivery and beyond.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW SERVICES -->
+<section class="new-svc-section">
+  <div class="new-svc-inner">
+    <div class="section-head">
+      <span class="section-tag">Newly Added</span>
+      <h2 class="section-title">Two New Expert<br/><span style="color:var(--gold)">Service Areas</span></h2>
+      <p class="section-sub">JMasters Global continues to grow — now offering Computer Science and Finance & Accounting support alongside our existing 8 service areas.</p>
+    </div>
+    <div class="new-svc-grid">
+      <div class="new-svc-card">
+        <img src="computer-science.png" alt="Computer Science Services at JMasters Global"/>
+        <div class="new-svc-card-body">
+          <div><h3>💻 Computer Science Services</h3><p>Python · Java · C++ · React · ML · AI · SQL · DevOps · Mobile Apps</p></div>
+          <a href="services.html#cs">View Service →</a>
+        </div>
+      </div>
+      <div class="new-svc-card">
+        <img src="accounting-finance.png" alt="Finance and Accounting Services at JMasters Global"/>
+        <div class="new-svc-card-body">
+          <div><h3>💰 Finance & Accounting Services</h3><p>Bookkeeping · Tax · Financial Statements · Payroll · QuickBooks · Xero</p></div>
+          <a href="services.html#finance">View Service →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand-col">
+      <div class="footer-brand"><img src="logo-transparent.png" alt="JMasters Global" class="footer-logo"/><span>JMasters Global</span></div>
+      <p>Trusted academic and professional consultancy worldwide since 2020.</p>
+      <div class="footer-contacts">
+        <a href="mailto:jasoneconomist@gmail.com">✉️ jasoneconomist@gmail.com</a>
+        <a href="https://wa.me/+254104699084" target="_blank">📱 +254 104 699 084</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Services</h4><ul>
+      <li><a href="services.html#economics">Economics Consultancy</a></li>
+      <li><a href="services.html#data">Data Analytics</a></li>
+      <li><a href="services.html#health">Health Economics</a></li>
+      <li><a href="services.html#thesis">Thesis & Research</a></li>
+      <li><a href="services.html#nursing">Nursing Services</a></li>
+      <li><a href="services.html#cs">💻 Computer Science</a></li>
+      <li><a href="services.html#finance">💰 Finance & Accounting</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Pricing</h4><ul>
+      <li>High School from $8/pg</li>
+      <li>Undergraduate from $14/pg</li>
+      <li>Master's from $19/pg</li>
+      <li>Doctoral from $27/pg</li>
+      <li>PhD Research from $30/pg</li>
+      <li style="color:var(--gold);font-weight:700">🎉 JMASTERS20 — 20% off</li>
+    </ul></div>
+    <div class="footer-col"><h4>Guarantees</h4><ul>
+      <li>✅ Plagiarism-Free Work</li>
+      <li>🔒 100% Confidential</li>
+      <li>🔄 Free Unlimited Revisions</li>
+      <li>⏰ On-Time Delivery</li>
+      <li>🎓 PhD-Qualified Experts</li>
+      <li>🌍 30+ Countries Served</li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 <strong>JMasters Global</strong>. All rights reserved. <em>Bridging You to Excellence since 2020.</em></p></div>
+</footer>
+
+<a href="https://wa.me/+254104699084" class="wa-float" target="_blank">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.885l6.222-1.432A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.817 9.817 0 01-5.003-1.366l-.358-.213-3.712.854.87-3.612-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+</a>
+
+<script src="main.js"></script>
+<script>
+const S = { rate:8, scope:1, smult:1, pages:5, dmult:1,
+  levelName:'High School', scopeName:'One Assignment',
+  svcName:'Academic Writing', deadName:'Standard · 3–7 days' };
+
+function calc() {
+  const eff = S.rate * S.smult * S.dmult;
+  const total = Math.round(eff * S.pages * S.scope);
+  document.getElementById('ecPrice').textContent   = '$' + total;
+  document.getElementById('ecTotal').textContent   = '~$' + total;
+  document.getElementById('ecSub').textContent     = 'USD · ' + S.levelName + ' · ' + S.deadName.split(' ·')[0];
+  document.getElementById('ecScope').textContent   = S.scopeName;
+  document.getElementById('ecLevel').textContent   = S.levelName;
+  document.getElementById('ecSvc').textContent     = S.svcName;
+  document.getElementById('ecPages').textContent   = S.pages + ' page' + (S.pages !== 1 ? 's' : '');
+  document.getElementById('ecDead').textContent    = S.deadName;
+  document.getElementById('ecRate').textContent    = '$' + eff.toFixed(2) + '/pg';
+}
+
+// Level
+document.getElementById('levelGrid').addEventListener('click', e => {
+  const c = e.target.closest('.opt-card[data-rate]');
+  if (!c) return;
+  document.querySelectorAll('#levelGrid .opt-card').forEach(x => x.classList.remove('selected'));
+  c.classList.add('selected');
+  S.rate = +c.dataset.rate;
+  S.levelName = c.querySelector('.opt-title').textContent.trim();
+  calc();
+});
+
+// Scope
+document.getElementById('scopeRow').addEventListener('click', e => {
+  const c = e.target.closest('.scope-opt');
+  if (!c) return;
+  document.querySelectorAll('.scope-opt').forEach(x => x.classList.remove('selected'));
+  c.classList.add('selected');
+  S.scope = +c.dataset.mult;
+  S.scopeName = c.querySelector('.s-title').textContent.trim();
+  calc();
+});
+
+// Service
+document.getElementById('svcGrid').addEventListener('click', e => {
+  const c = e.target.closest('.opt-card[data-smult]');
+  if (!c) return;
+  document.querySelectorAll('#svcGrid .opt-card').forEach(x => x.classList.remove('selected'));
+  c.classList.add('selected');
+  S.smult = +c.dataset.smult;
+  S.svcName = c.dataset.sname || c.querySelector('.opt-title').textContent.replace(/^.{2}\s/,'').trim();
+  calc();
+});
+
+// Slider
+const slider = document.getElementById('pageSlider');
+function updateSlider() {
+  S.pages = +slider.value;
+  const pct = ((S.pages - 1) / 59 * 100).toFixed(1);
+  slider.style.setProperty('--pct', pct + '%');
+  document.getElementById('pageNum').textContent    = S.pages;
+  document.getElementById('wordCount').textContent  = (S.pages * 250).toLocaleString();
+  calc();
+}
+slider.addEventListener('input', updateSlider);
+updateSlider();
+
+// Deadline
+document.getElementById('deadGrid').addEventListener('click', e => {
+  const c = e.target.closest('.opt-card[data-dmult]');
+  if (!c) return;
+  document.querySelectorAll('#deadGrid .opt-card').forEach(x => x.classList.remove('selected'));
+  c.classList.add('selected');
+  S.dmult = +c.dataset.dmult;
+  S.deadName = c.dataset.dname;
+  calc();
+});
+
+calc();
+</script>
+</body>
+</html>
