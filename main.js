@@ -92,63 +92,100 @@ document.querySelectorAll('.svc-card,.level-card,.step-card,.tcard,.wf,.ws,.tool
 });
 
 /* ---- PARTICLES ---- */
-const pContainer = document.getElementById('particles');
-if (pContainer) {
-  for (let i = 0; i < 24; i++) {
+(function() {
+  const pContainer = document.getElementById('particles');
+  if (!pContainer) return;
+  const colors = [
+    'rgba(232,160,32,0.6)',   // gold
+    'rgba(59,130,246,0.5)',   // blue
+    'rgba(6,182,212,0.5)',    // cyan
+    'rgba(255,255,255,0.3)',  // white
+    'rgba(139,92,246,0.4)',   // purple
+  ];
+  for (let i = 0; i < 32; i++) {
     const p = document.createElement('div');
     p.className = 'particle';
-    p.style.cssText = `left:${Math.random()*100}%;animation-duration:${8+Math.random()*12}s;animation-delay:${Math.random()*12}s;width:${2+Math.random()*3}px;height:${2+Math.random()*3}px;opacity:${0.2+Math.random()*0.5}`;
+    const size = 2 + Math.random() * 4;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    p.style.cssText = [
+      'left:' + (Math.random() * 100) + '%',
+      'animation-duration:' + (7 + Math.random() * 14) + 's',
+      'animation-delay:' + (Math.random() * 14) + 's',
+      'width:' + size + 'px',
+      'height:' + size + 'px',
+      'background:' + color,
+      'border-radius:50%',
+      'box-shadow:0 0 ' + (size*2) + 'px ' + color,
+    ].join(';');
     pContainer.appendChild(p);
   }
-}
+})();
 
 /* ---- TESTIMONIAL CAROUSEL ---- */
-const track = document.getElementById('testiTrack');
-const dotsContainer = document.getElementById('tcDots');
-if (track) {
-  const cards = track.querySelectorAll('.tcard');
-  const visibleCount = () => window.innerWidth < 640 ? 1 : window.innerWidth < 900 ? 2 : 3;
+(function() {
+  const track = document.getElementById('testiTrack');
+  const dotsWrap = document.getElementById('tcDots');
+  if (!track) return;
+
+  const cards = Array.from(track.querySelectorAll('.tcard'));
   let current = 0;
-  let autoTimer;
+  let auto;
+
+  function vc() {
+    if (window.innerWidth < 600) return 1;
+    if (window.innerWidth < 960) return 2;
+    return 3;
+  }
+
+  function pages() { return Math.ceil(cards.length / vc()); }
 
   function buildDots() {
-    if (!dotsContainer) return;
-    dotsContainer.innerHTML = '';
-    const pages = Math.ceil(cards.length / visibleCount());
-    for (let i = 0; i < pages; i++) {
+    if (!dotsWrap) return;
+    dotsWrap.innerHTML = '';
+    for (let i = 0; i < pages(); i++) {
       const d = document.createElement('div');
-      d.className = 'tc-dot' + (i === 0 ? ' active' : '');
+      d.className = 'tc-dot' + (i === current ? ' active' : '');
       d.addEventListener('click', () => goTo(i));
-      dotsContainer.appendChild(d);
+      dotsWrap.appendChild(d);
     }
   }
 
-  function goTo(page) {
-    const vc = visibleCount();
-    const pages = Math.ceil(cards.length / vc);
-    current = Math.max(0, Math.min(page, pages - 1));
-    const cardW = cards[0].offsetWidth + 20;
-    track.style.transform = `translateX(-${current * vc * cardW}px)`;
-    dotsContainer?.querySelectorAll('.tc-dot').forEach((d, i) => d.classList.toggle('active', i === current));
-    clearTimeout(autoTimer);
-    autoTimer = setTimeout(() => goTo((current + 1) % pages), 5000);
+  function goTo(p) {
+    const totalPages = pages();
+    current = ((p % totalPages) + totalPages) % totalPages;
+    const v = vc();
+    // calculate card width including gap
+    const gap = 20;
+    const cardW = cards[0] ? cards[0].offsetWidth + gap : 340;
+    track.style.transform = 'translateX(-' + (current * v * cardW) + 'px)';
+    if (dotsWrap) {
+      dotsWrap.querySelectorAll('.tc-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+      });
+    }
+    clearTimeout(auto);
+    auto = setTimeout(() => goTo(current + 1), 5000);
   }
 
   document.getElementById('tcNext')?.addEventListener('click', () => goTo(current + 1));
   document.getElementById('tcPrev')?.addEventListener('click', () => goTo(current - 1));
 
-  buildDots();
-  autoTimer = setTimeout(() => goTo(1), 5000);
-  window.addEventListener('resize', () => { buildDots(); goTo(0); });
-
   // Touch swipe
-  let startX = 0;
-  track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+  let sx = 0;
+  track.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
   track.addEventListener('touchend', e => {
-    const diff = startX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+    const dx = sx - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 40) goTo(dx > 0 ? current + 1 : current - 1);
   });
-}
+
+  // Pause on hover
+  track.addEventListener('mouseenter', () => clearTimeout(auto));
+  track.addEventListener('mouseleave', () => { auto = setTimeout(() => goTo(current + 1), 5000); });
+
+  buildDots();
+  auto = setTimeout(() => goTo(1), 4000);
+  window.addEventListener('resize', () => { buildDots(); goTo(0); });
+})();
 
 /* ---- ACTIVE NAV ON SCROLL ---- */
 const sections = document.querySelectorAll('section[id]');
