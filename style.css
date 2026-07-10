@@ -782,3 +782,358 @@ ul{list-style:none}
     padding: 0 0 24px;
   }
 }
+
+/* ===== HERO COLOR OVERRIDE — Professional Slate Gradient ===== */
+.hero {
+  background: linear-gradient(160deg, #0f2444 0%, #1a3a6e 40%, #0d1f3c 100%) !important;
+}
+.o1 { background: #3b82f6 !important; opacity: .14 !important; }
+.o2 { background: #0ea5e9 !important; opacity: .11 !important; }
+.o3 { background: #E8A020 !important; opacity: .09 !important; }
+
+/* ===== ALL IMAGES: show full, no cropping ===== */
+.svc-img img,
+.svc-block-img img,
+.svc-img-full img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center top !important;
+  display: block;
+}
+
+/* Service card image containers — auto height so full flyer shows */
+.svc-img {
+  width: 100%;
+  height: auto !important;
+  overflow: hidden;
+  background: #f0f4ff;
+}
+
+/* Match backgrounds to each flyer style */
+a[href*="#cv"] .svc-img      { background: #0d1b36; }
+a[href*="#cs"] .svc-img      { background: #0B1E3D; }
+a[href*="#finance"] .svc-img { background: #f8f9ff; }
+a[href*="#nursing"] .svc-img { background: #f0f4ff; }
+a[href*="#thesis"] .svc-img  { background: #f0f4ff; }
+
+/* Service blocks on services page — full flyer, no crop */
+.svc-block-img {
+  border-radius: 14px;
+  overflow: hidden;
+  width: 100%;
+}
+#cv .svc-block-img      { background: linear-gradient(135deg,#0d1b36,#1a2d50); }
+#cs .svc-block-img      { background: #0B1E3D; }
+#finance .svc-block-img { background: #f8f9ff; }
+
+/* ===== LAYOUT: prevent text squeezing to corners ===== */
+.svc-block-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 40px !important;
+  gap: 56px !important;
+}
+.svc-content {
+  padding: 12px 0 !important;
+}
+.svc-block {
+  padding: 88px 0 !important;
+}
+
+/* ===== ABOUT PAGE: better spacing ===== */
+.about-grid {
+  gap: 72px;
+  align-items: center;
+}
+
+/* ===== SERVICES GRID: 4 cols on large, 2 on tablet, 1 on mobile ===== */
+@media (min-width: 1100px) {
+  .services-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 1099px) and (min-width: 640px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 639px) {
+  .services-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== MOBILE service blocks ===== */
+@media (max-width: 900px) {
+  .svc-block-inner {
+    grid-template-columns: 1fr !important;
+    direction: ltr !important;
+    gap: 28px !important;
+    padding: 0 20px !important;
+  }
+  .svc-block-inner > * { direction: ltr !important; }
+  .svc-block { padding: 56px 0 !important; }
+}
+
+/* ===== PRICING NAV ===== */
+.nav-links li a[href*="pricing"] { }
+
+/* =============================================
+   PROFESSIONAL POLISH v9 — Final Refinements
+   ============================================= */
+
+/* ── Hero: lighter, more professional gradient ── */
+.hero {
+  background: linear-gradient(150deg,#0f2444 0%,#193568 45%,#0d1f3c 100%) !important;
+}
+/* Softer, more elegant orbs */
+.hero-orb-1,.o1 { background:radial-gradient(circle,#3b82f6,#1d4ed8) !important; opacity:.16 !important; filter:blur(100px) !important; }
+.hero-orb-2,.o2 { background:radial-gradient(circle,#06b6d4,#0284c7) !important; opacity:.13 !important; filter:blur(90px) !important; }
+.orb.o3        { background:radial-gradient(circle,#f59e0b,#d97706) !important; opacity:.10 !important; filter:blur(110px) !important; }
+
+/* ── Professional section backgrounds ── */
+.services-section { background: #f8faff !important; }
+.how-section      { background: #ffffff !important; }
+.tools-section    { background: #f8faff !important; }
+
+/* ── Better container padding so text never squeezes ── */
+.container { padding: 0 32px !important; }
+@media(max-width:768px){ .container { padding: 0 20px !important; } }
+
+/* ── Service cards: uniform image heights ── */
+.svc-img {
+  height: auto !important;
+  min-height: 180px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.svc-img img {
+  width: 100%;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block;
+}
+
+/* ── Service block layout refinements ── */
+.svc-block-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 48px !important;
+  gap: 64px !important;
+}
+.svc-content h2 { font-size: clamp(1.8rem, 2.8vw, 2.4rem) !important; }
+.svc-desc { font-size: .96rem !important; line-height: 1.85 !important; }
+.tick-item { gap: 14px !important; }
+.tick-item p { font-size: .87rem !important; line-height: 1.7 !important; color: #5a6a85 !important; }
+
+/* ── Pricing link in nav ── */
+.nav-links a[href="pricing.html"] { color: rgba(255,255,255,.75); }
+.nav-links a[href="pricing.html"].active,
+.nav-links a[href="pricing.html"]:hover { color: #fff; }
+
+/* ── About page: better image panel ── */
+.about-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 72px !important;
+  align-items: center !important;
+}
+@media(max-width:900px) {
+  .about-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+}
+
+/* ── Hero stats — refined ── */
+.hero-stats { margin-top: 48px; gap: 0; }
+.stat-n { font-size: 2.4rem !important; }
+.sdiv { background: rgba(255,255,255,.2) !important; }
+
+/* ── Section titles — less italic, more authority ── */
+.section-title em {
+  font-style: normal !important;
+  color: var(--gold) !important;
+  font-weight: 900 !important;
+}
+
+/* ── Trust bar spacing ── */
+.trust-inner { padding: 16px 32px !important; gap: 8px !important; }
+.ti { gap: 7px !important; font-size: .82rem !important; }
+
+/* ── Step cards — better padding ── */
+.step-card { padding: 0 20px !important; }
+.step-card p { font-size: .85rem !important; line-height: 1.65 !important; }
+
+/* ── Tools pills: more elegant ── */
+.tool-pill {
+  padding: 9px 20px !important;
+  font-size: .83rem !important;
+  border-radius: 50px !important;
+  letter-spacing: .3px !important;
+}
+
+/* ── Why section features — better spacing ── */
+.why-feats { gap: 18px !important; }
+.wf { padding: 14px !important; background: rgba(255,255,255,.04); border-radius: 10px; }
+.wf strong { font-size: .92rem !important; }
+.wf p { font-size: .82rem !important; }
+
+/* ── Testimonials — refined ── */
+.tcard { padding: 28px 24px !important; }
+.tcard p { font-size: .86rem !important; line-height: 1.78 !important; }
+
+/* ── CTA section ── */
+.cta-section::before {
+  background: radial-gradient(ellipse at center, rgba(232,160,32,.1) 0%, transparent 70%) !important;
+}
+
+/* ── Footer — tighter, cleaner ── */
+.footer-inner { padding: 0 32px 48px !important; gap: 40px !important; }
+.footer-col li, .footer-col a { font-size: .84rem !important; line-height: 1.8 !important; }
+
+/* ── Scrolling services bar ── */
+.svc-scroll-item { padding: 10px 22px !important; }
+.svc-scroll-item strong { font-size: .84rem !important; }
+
+/* ── NEW: service count badge on nav ── */
+.nav-svc-count {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: .6rem;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 10px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/* ── Page hero refinements ── */
+.page-hero { padding: 140px 32px 72px !important; }
+.page-hero h1 { font-size: clamp(2rem,4.5vw,3.6rem) !important; }
+
+/* ── Services page hero nav pills ── */
+.page-hero-nav { gap: 8px; margin-top: 28px; }
+.phero-link { font-size: .76rem !important; padding: 7px 14px !important; }
+
+/* ── MOBILE: everything needs breathing room ── */
+@media(max-width:768px) {
+  .hero-inner { padding: 80px 20px 56px !important; gap: 36px !important; }
+  .hero-title { font-size: 2rem !important; }
+  .hero-sub   { font-size: .92rem !important; }
+  .svc-block-inner { padding: 0 20px !important; gap: 24px !important; }
+  .svc-block  { padding: 52px 0 !important; }
+  .section    { padding: 72px 0 !important; }
+  .services-float-card { padding: 16px !important; }
+  .footer-inner { grid-template-columns: 1fr !important; padding: 0 20px 36px !important; }
+}
+
+/* ============================================
+   PROFESSIONAL REDESIGN v10
+   - Light hero background
+   - Better text spacing / padding
+   - Professional color palette
+   ============================================ */
+
+/* HERO — change from dark navy to deep professional slate-blue gradient */
+.hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0f2947 100%) !important;
+}
+
+/* Orbs — softer, more professional colors */
+.o1 { background: #3B82F6 !important; opacity: .15 !important; }
+.o2 { background: #E8A020 !important; opacity: .12 !important; }
+.o3 { background: #06B6D4 !important; opacity: .10 !important; }
+
+/* SERVICES GRID — ensure all 10 cards show */
+.services-grid {
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+@media(max-width:1100px) { .services-grid { grid-template-columns: repeat(3,1fr) !important; } }
+@media(max-width:768px)  { .services-grid { grid-template-columns: repeat(2,1fr) !important; } }
+@media(max-width:480px)  { .services-grid { grid-template-columns: 1fr !important; } }
+
+/* Service card images — full flyer visible, no cropping */
+.svc-img {
+  height: auto !important;
+  min-height: 180px;
+  overflow: hidden;
+  background: #f0f4ff;
+}
+.svc-img img {
+  width: 100%;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center top !important;
+  display: block;
+}
+
+/* Better text spacing — no squeezing */
+.container { padding: 0 40px !important; }
+@media(max-width:768px) { .container { padding: 0 20px !important; } }
+
+.svc-body { padding: 20px 20px 24px !important; }
+.svc-body p { font-size: .88rem !important; line-height: 1.7 !important; }
+
+.section { padding: 96px 0 !important; }
+@media(max-width:768px) { .section { padding: 64px 0 !important; } }
+
+/* ABOUT PAGE — better layout */
+.about-grid { gap: 56px !important; }
+.about-grid p { font-size: .95rem !important; line-height: 1.85 !important; }
+
+/* SERVICES PAGE — better block spacing */
+.svc-block-inner { 
+  padding: 0 40px !important; 
+  gap: 56px !important;
+}
+@media(max-width:900px) { .svc-block-inner { padding: 0 20px !important; gap: 32px !important; } }
+
+.svc-content h2 { margin-bottom: 10px !important; }
+.svc-desc { font-size: .97rem !important; line-height: 1.85 !important; margin-bottom: 24px !important; }
+.tick-item { gap: 14px !important; }
+.tick-item p { font-size: .88rem !important; line-height: 1.65 !important; }
+
+/* Service image — full flyer on services page */
+.svc-block-img {
+  border-radius: 14px !important;
+  overflow: hidden;
+}
+.svc-block-img img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center top !important;
+  display: block;
+}
+#cs .svc-block-img,
+#cs .svc-block-img img { background: #0B1E3D !important; }
+#finance .svc-block-img,
+#finance .svc-block-img img { background: #f8f9ff !important; }
+#cv .svc-block-img,
+#cv .svc-block-img img { background: #0B1E3D !important; }
+
+/* NAV logo — no white box */
+.nav-logo img { background: transparent !important; border-radius: 0 !important; }
+
+/* ABOUT — replace economics.png with logo */
+.about-logo-img { 
+  width: 100%; 
+  max-width: 360px; 
+  margin: 0 auto; 
+  display: block;
+  filter: drop-shadow(0 8px 32px rgba(11,30,61,.2));
+}
+
+/* FOOTER brand name spacing */
+.footer-brand { gap: 14px !important; margin-bottom: 20px !important; }
+.footer-brand-col p { font-size: .86rem !important; line-height: 1.8 !important; }
+
+/* Levels section mobile fix */
+@media(max-width:900px) { .levels-grid { grid-template-columns: repeat(2,1fr) !important; } }
+@media(max-width:480px) { .levels-grid { grid-template-columns: 1fr !important; } }
+
+/* WHY section spacing */
+.why-wrap { padding: 0 40px !important; }
+@media(max-width:768px) { .why-wrap { padding: 0 20px !important; } }
+
+/* Testimonials track */
+.testi-section .container { overflow: hidden; }
