@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Client Portal | JMasters Global</title>
+  <meta name="description" content="JMasters Global Client Portal — place orders, upload files, track delivery, approve work, and leave reviews."/>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MMWP33FQR0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MMWP33FQR0');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ── PORTAL VARIABLES ── */
+    :root {
+      --tan:#f7f5f0; --tan2:#ede9e0; --brown:#b87333; --brown2:#c8a96e;
+      --dark:#1a1209; --ok:#059669; --warn:#d97706; --err:#dc2626;
+    }
+
+    /* ── PORTAL WRAPPER ── */
+    .portal-wrap { min-height:100vh; background:var(--off); padding-top:68px; }
+
+    /* ── AUTH SCREEN ── */
+    .auth-screen {
+      min-height:calc(100vh - 68px);
+      display:flex; align-items:center; justify-content:center;
+      background:linear-gradient(135deg,#0f172a,#1a2744,#0c2340);
+      padding:40px 24px;
+    }
+    .auth-card {
+      background:#fff; border-radius:20px; padding:40px;
+      width:100%; max-width:420px;
+      box-shadow:0 24px 80px rgba(0,0,0,.35);
+    }
+    .auth-logo { display:flex; align-items:center; gap:12px; margin-bottom:28px; }
+    .auth-logo img { height:52px; }
+    .auth-logo span { font-family:var(--fd); font-size:1.2rem; color:var(--navy); font-weight:700; }
+    .auth-logo strong { color:var(--gold); }
+    .auth-tabs { display:flex; background:var(--off); border-radius:10px; padding:4px; margin-bottom:24px; }
+    .auth-tab { flex:1; padding:9px; border:none; background:transparent; border-radius:8px; font-family:var(--fb); font-size:.88rem; font-weight:600; color:var(--muted); cursor:pointer; transition:.2s; }
+    .auth-tab.active { background:#fff; color:var(--navy); box-shadow:0 2px 8px rgba(11,30,61,.1); }
+    .auth-form { display:flex; flex-direction:column; gap:14px; }
+    .auth-form.hidden { display:none; }
+    .fg label { display:block; font-size:.75rem; font-weight:700; color:var(--navy); margin-bottom:5px; text-transform:uppercase; letter-spacing:.5px; }
+    .fg input { width:100%; padding:11px 14px; border:1.5px solid var(--border); border-radius:10px; font-family:var(--fb); font-size:.92rem; color:var(--text); background:var(--off); transition:.2s; }
+    .fg input:focus { outline:none; border-color:var(--gold); background:#fff; box-shadow:0 0 0 3px rgba(232,160,32,.12); }
+    .auth-btn { background:var(--gold); color:var(--navy); font-family:var(--fb); font-weight:700; font-size:.95rem; padding:13px; border-radius:50px; border:none; cursor:pointer; transition:.2s; margin-top:4px; }
+    .auth-btn:hover { background:var(--gold2); transform:translateY(-2px); }
+    .auth-divider { text-align:center; font-size:.78rem; color:var(--muted); margin:4px 0; }
+    .auth-wa { display:flex; align-items:center; justify-content:center; gap:10px; background:#25D366; color:#fff; font-family:var(--fb); font-weight:600; font-size:.88rem; padding:11px; border-radius:50px; text-decoration:none; transition:.2s; }
+    .auth-wa:hover { background:#1db954; transform:translateY(-1px); }
+    .auth-note { font-size:.74rem; color:var(--muted); text-align:center; margin-top:12px; line-height:1.6; }
+
+    /* ── DASHBOARD ── */
+    .dashboard { display:none; }
+    .dashboard.active { display:block; }
+    .dash-header { background:var(--navy); padding:20px 40px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,.08); }
+    .dash-header-left { display:flex; align-items:center; gap:14px; }
+    .dash-user-av { width:40px; height:40px; border-radius:50%; background:var(--gold); color:var(--navy); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:.9rem; flex-shrink:0; }
+    .dash-user-name { color:#fff; font-weight:600; font-size:.95rem; }
+    .dash-user-email { color:rgba(255,255,255,.5); font-size:.78rem; }
+    .dash-actions { display:flex; gap:12px; align-items:center; }
+    .dash-logout { background:rgba(255,255,255,.08); color:rgba(255,255,255,.7); border:1px solid rgba(255,255,255,.15); font-family:var(--fb); font-size:.82rem; font-weight:600; padding:8px 16px; border-radius:20px; cursor:pointer; transition:.2s; }
+    .dash-logout:hover { background:rgba(255,255,255,.15); color:#fff; }
+
+    /* ── DASH TABS ── */
+    .dash-tabs { background:#fff; border-bottom:1px solid var(--border); padding:0 40px; display:flex; gap:0; overflow-x:auto; }
+    .dash-tab { padding:16px 20px; font-size:.88rem; font-weight:600; color:var(--muted); cursor:pointer; border-bottom:2px solid transparent; transition:.2s; white-space:nowrap; background:none; border-left:none; border-right:none; border-top:none; font-family:var(--fb); }
+    .dash-tab.active { color:var(--navy); border-bottom-color:var(--gold); }
+    .dash-tab:hover { color:var(--navy); }
+
+    /* ── DASH PANELS ── */
+    .dash-panel { display:none; padding:40px; max-width:1100px; margin:0 auto; }
+    .dash-panel.active { display:block; }
+
+    /* ── ORDER FORM ── */
+    .order-grid { display:grid; grid-template-columns:1fr 360px; gap:32px; align-items:start; }
+    .order-card { background:#fff; border:1.5px solid var(--border); border-radius:16px; padding:28px; }
+    .order-card h3 { font-family:var(--fd); font-size:1.2rem; color:var(--navy); margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid var(--border); }
+    .order-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+    .order-row.full { grid-template-columns:1fr; }
+    .of label { display:block; font-size:.75rem; font-weight:700; color:var(--navy); margin-bottom:6px; text-transform:uppercase; letter-spacing:.5px; }
+    .of input,.of select,.of textarea { width:100%; padding:11px 14px; border:1.5px solid var(--border); border-radius:10px; font-family:var(--fb); font-size:.9rem; color:var(--text); background:var(--off); transition:.2s; }
+    .of input:focus,.of select:focus,.of textarea:focus { outline:none; border-color:var(--gold); background:#fff; }
+    .of textarea { resize:vertical; min-height:100px; }
+    .file-drop { border:2px dashed var(--border); border-radius:12px; padding:28px; text-align:center; cursor:pointer; transition:.2s; background:var(--off); }
+    .file-drop:hover,.file-drop.drag { border-color:var(--gold); background:rgba(232,160,32,.05); }
+    .file-drop-icon { font-size:2rem; margin-bottom:8px; }
+    .file-drop p { font-size:.85rem; color:var(--muted); margin-bottom:4px; }
+    .file-drop small { font-size:.74rem; color:rgba(100,116,139,.7); }
+    .file-drop input[type=file] { display:none; }
+    .file-list { margin-top:12px; display:flex; flex-direction:column; gap:6px; }
+    .file-item { display:flex; align-items:center; gap:10px; background:#fff; border:1px solid var(--border); border-radius:8px; padding:8px 12px; font-size:.82rem; }
+    .file-item span { flex:1; color:var(--navy); font-weight:500; }
+    .file-item button { background:none; border:none; color:var(--err); cursor:pointer; font-size:1rem; }
+
+    /* Price summary card */
+    .price-summary { background:var(--navy); border-radius:16px; padding:24px; color:#fff; position:sticky; top:20px; }
+    .ps-title { font-size:.68rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.45); margin-bottom:16px; }
+    .ps-row { display:flex; justify-content:space-between; margin-bottom:8px; }
+    .ps-label { font-size:.8rem; color:rgba(255,255,255,.55); }
+    .ps-val { font-size:.8rem; color:rgba(255,255,255,.85); font-weight:600; }
+    .ps-div { border:none; border-top:1px solid rgba(255,255,255,.08); margin:12px 0; }
+    .ps-total-label { font-size:.95rem; font-weight:700; color:#fff; }
+    .ps-total-val { font-family:var(--fd); font-size:1.8rem; color:var(--gold); font-weight:700; }
+    .ps-promo { background:rgba(232,160,32,.1); border:1px solid rgba(232,160,32,.3); border-radius:8px; padding:10px 12px; margin:14px 0; }
+    .ps-promo-row { display:flex; gap:8px; }
+    .ps-promo-input { flex:1; background:transparent; border:none; color:#fff; font-family:var(--fb); font-size:.85rem; outline:none; }
+    .ps-promo-input::placeholder { color:rgba(255,255,255,.3); }
+    .ps-promo-btn { background:var(--gold); color:var(--navy); border:none; padding:6px 12px; border-radius:6px; font-weight:700; font-size:.78rem; cursor:pointer; transition:.2s; }
+    .ps-promo-btn:hover { background:var(--gold2); }
+    .place-order-btn { width:100%; background:var(--gold); color:var(--navy); font-family:var(--fb); font-weight:800; font-size:1rem; padding:15px; border-radius:50px; border:none; cursor:pointer; transition:.2s; margin-top:4px; display:flex; align-items:center; justify-content:center; gap:10px; }
+    .place-order-btn:hover { background:var(--gold2); transform:translateY(-2px); box-shadow:0 8px 24px rgba(232,160,32,.4); }
+    .place-order-btn:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+
+    /* ── ORDERS LIST ── */
+    .orders-list { display:flex; flex-direction:column; gap:16px; }
+    .order-item { background:#fff; border:1.5px solid var(--border); border-radius:14px; padding:22px 24px; display:grid; grid-template-columns:1fr auto; gap:16px; align-items:center; transition:.2s; }
+    .order-item:hover { border-color:var(--gold); box-shadow:var(--sh); }
+    .oi-ref { font-size:.72rem; font-weight:700; color:var(--muted); letter-spacing:1px; margin-bottom:4px; }
+    .oi-title { font-family:var(--fd); font-size:1.05rem; color:var(--navy); font-weight:700; margin-bottom:4px; }
+    .oi-meta { font-size:.8rem; color:var(--muted); }
+    .oi-status { display:inline-flex; align-items:center; gap:6px; font-size:.75rem; font-weight:700; padding:5px 12px; border-radius:20px; }
+    .status-pending   { background:rgba(217,119,6,.12); color:#b45309; }
+    .status-working   { background:rgba(59,130,246,.12); color:#1d4ed8; }
+    .status-delivered { background:rgba(232,160,32,.15); color:#b87333; }
+    .status-approved  { background:rgba(5,150,105,.12); color:#047857; }
+    .status-revision  { background:rgba(220,38,38,.1); color:#b91c1c; }
+    .oi-actions { display:flex; flex-direction:column; gap:8px; align-items:flex-end; }
+    .oi-btn { padding:8px 16px; border-radius:20px; font-family:var(--fb); font-size:.78rem; font-weight:700; cursor:pointer; border:none; transition:.2s; }
+    .oi-btn-view { background:var(--navy); color:#fff; }
+    .oi-btn-view:hover { background:var(--gold); color:var(--navy); }
+    .oi-btn-approve { background:var(--ok); color:#fff; }
+    .oi-btn-revision { background:var(--err); color:#fff; }
+    .oi-btn-review { background:var(--gold); color:var(--navy); }
+
+    /* ── ORDER DETAIL MODAL ── */
+    .modal-overlay { position:fixed; inset:0; background:rgba(5,15,30,.85); backdrop-filter:blur(8px); z-index:2000; display:flex; align-items:center; justify-content:center; padding:24px; opacity:0; visibility:hidden; transition:.25s; }
+    .modal-overlay.open { opacity:1; visibility:visible; }
+    .modal-box { background:#fff; border-radius:20px; width:100%; max-width:680px; max-height:85vh; overflow-y:auto; position:relative; transform:translateY(20px); transition:.25s; }
+    .modal-overlay.open .modal-box { transform:translateY(0); }
+    .modal-head { padding:24px 28px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; background:#fff; z-index:1; }
+    .modal-head h3 { font-family:var(--fd); font-size:1.2rem; color:var(--navy); }
+    .modal-close-btn { background:var(--off); border:none; width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:.9rem; color:var(--muted); transition:.2s; display:flex; align-items:center; justify-content:center; }
+    .modal-close-btn:hover { background:var(--navy); color:#fff; }
+    .modal-body { padding:28px; }
+    .modal-section { margin-bottom:24px; }
+    .modal-section h4 { font-size:.8rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; }
+    .delivery-file { display:flex; align-items:center; gap:12px; background:var(--off); border:1px solid var(--border); border-radius:10px; padding:12px 14px; margin-bottom:8px; }
+    .delivery-file-icon { font-size:1.4rem; }
+    .delivery-file-name { flex:1; font-size:.88rem; font-weight:600; color:var(--navy); }
+    .delivery-file-dl { background:var(--navy); color:#fff; font-size:.75rem; font-weight:700; padding:6px 12px; border-radius:8px; cursor:pointer; border:none; transition:.2s; }
+    .delivery-file-dl:hover { background:var(--gold); color:var(--navy); }
+    .decision-row { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-approve { background:var(--ok); color:#fff; font-family:var(--fb); font-weight:700; font-size:.9rem; padding:12px 24px; border-radius:50px; border:none; cursor:pointer; transition:.2s; flex:1; }
+    .btn-approve:hover { transform:translateY(-2px); filter:brightness(1.1); }
+    .btn-request-rev { background:var(--err); color:#fff; font-family:var(--fb); font-weight:700; font-size:.9rem; padding:12px 24px; border-radius:50px; border:none; cursor:pointer; transition:.2s; flex:1; }
+    .btn-request-rev:hover { transform:translateY(-2px); filter:brightness(1.1); }
+    .revision-box { display:none; margin-top:14px; }
+    .revision-box textarea { width:100%; padding:12px; border:1.5px solid var(--border); border-radius:10px; font-family:var(--fb); font-size:.88rem; resize:vertical; min-height:80px; }
+    .revision-box textarea:focus { outline:none; border-color:var(--err); }
+    .send-revision-btn { margin-top:8px; background:var(--err); color:#fff; font-family:var(--fb); font-weight:700; font-size:.88rem; padding:10px 20px; border-radius:50px; border:none; cursor:pointer; }
+
+    /* ── REVIEW FORM ── */
+    .review-form { background:var(--off); border:1.5px solid var(--border); border-radius:14px; padding:24px; margin-top:16px; }
+    .review-form h4 { font-family:var(--fd); font-size:1.1rem; color:var(--navy); margin-bottom:16px; }
+    .star-picker { display:flex; gap:8px; margin-bottom:16px; }
+    .star-picker span { font-size:2rem; cursor:pointer; color:#ddd; transition:color .15s; user-select:none; }
+    .star-picker span.active { color:var(--gold); }
+    .review-form textarea { width:100%; padding:12px 14px; border:1.5px solid var(--border); border-radius:10px; font-family:var(--fb); font-size:.9rem; resize:vertical; min-height:90px; background:#fff; }
+    .review-form textarea:focus { outline:none; border-color:var(--gold); }
+    .submit-review-btn { margin-top:12px; background:var(--gold); color:var(--navy); font-family:var(--fb); font-weight:700; font-size:.9rem; padding:12px 24px; border-radius:50px; border:none; cursor:pointer; transition:.2s; }
+    .submit-review-btn:hover { background:var(--gold2); transform:translateY(-2px); }
+
+    /* ── NOTIFICATIONS ── */
+    .notif-list { display:flex; flex-direction:column; gap:12px; }
+    .notif-item { background:#fff; border-left:4px solid var(--gold); border-radius:0 12px 12px 0; padding:14px 18px; box-shadow:var(--sh); }
+    .notif-item.info { border-color:#3b82f6; }
+    .notif-item.success { border-color:var(--ok); }
+    .notif-item.alert { border-color:var(--err); }
+    .notif-title { font-weight:700; color:var(--navy); font-size:.9rem; margin-bottom:3px; }
+    .notif-time { font-size:.74rem; color:var(--muted); }
+
+    /* ── TOAST ── */
+    .toast { position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(80px); background:var(--navy); color:#fff; padding:12px 24px; border-radius:50px; font-size:.88rem; font-weight:600; z-index:9999; transition:transform .3s ease; pointer-events:none; white-space:nowrap; box-shadow:0 8px 32px rgba(0,0,0,.3); }
+    .toast.show { transform:translateX(-50%) translateY(0); }
+    .toast.success { background:var(--ok); }
+    .toast.error { background:var(--err); }
+
+    /* ── EMPTY STATE ── */
+    .empty-state { text-align:center; padding:60px 20px; }
+    .empty-state-icon { font-size:3rem; margin-bottom:14px; }
+    .empty-state h3 { font-family:var(--fd); font-size:1.4rem; color:var(--navy); margin-bottom:8px; }
+    .empty-state p { color:var(--muted); font-size:.9rem; }
+
+    /* ── WHATSAPP ALERT BANNER ── */
+    .wa-alert { background:linear-gradient(90deg,#075e54,#128c7e); color:#fff; padding:14px 28px; border-radius:12px; margin-bottom:24px; display:flex; align-items:center; gap:14px; }
+    .wa-alert-icon { font-size:1.8rem; flex-shrink:0; }
+    .wa-alert p { font-size:.88rem; line-height:1.6; }
+    .wa-alert a { color:#25D366; font-weight:700; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:768px) {
+      .order-grid { grid-template-columns:1fr; }
+      .dash-panel { padding:20px 16px; }
+      .dash-header { padding:14px 16px; }
+      .dash-tabs { padding:0 16px; }
+      .order-row { grid-template-columns:1fr; }
+      .decision-row { flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="promo-ticker">
+  <div class="ticker-track">
+    <span>🎉 <strong>20% OFF</strong> first order — code <strong>JMASTERS20</strong></span>
+    <span>⚡ <strong>FREE CONSULTATION</strong> — WhatsApp us now</span>
+    <span>🌍 <strong>500+ clients</strong> across 30+ countries since 2020</span>
+    <span>💻 <strong>NEW:</strong> Computer Science &amp; Finance &amp; Accounting services</span>
+    <span>🎉 <strong>20% OFF</strong> first order — code <strong>JMASTERS20</strong></span>
+    <span>⚡ <strong>FREE CONSULTATION</strong> — WhatsApp us now</span>
+  </div>
+</div>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="logo-transparent.png" alt="JMasters Global"/><span>JMasters <strong>Global</strong></span></a>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li class="has-dropdown">
+        <a href="services.html">Services <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="services.html#economics">📊 Economics Consultancy</a>
+          <a href="services.html#data">📈 Data Analytics</a>
+          <a href="services.html#business">💼 Business Analytics</a>
+          <a href="services.html#health">🏥 Health Economics</a>
+          <a href="services.html#thesis">📝 Thesis &amp; Research</a>
+          <a href="services.html#nursing">❤️ Nursing Services</a>
+          <a href="services.html#online">🎓 Online Class Services</a>
+          <a href="services.html#cv">🚀 CV &amp; Career Guidance</a>
+          <a href="services.html#cs">💻 Computer Science</a>
+          <a href="services.html#finance">💰 Finance &amp; Accounting</a>
+        </div>
+      </li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="portal.html" class="active" style="color:var(--gold)">My Portal</a></li>
+      <li><a href="https://wa.me/+254104699084" class="nav-cta" target="_blank">WhatsApp Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="portal-wrap">
+
+  <!-- ══════════════ AUTH SCREEN ══════════════ -->
+  <div class="auth-screen" id="authScreen">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <img src="logo-transparent.png" alt="JMasters Global"/>
+        <span>JMasters <strong>Global</strong></span>
+      </div>
+      <h2 style="font-family:var(--fd);font-size:1.5rem;color:var(--navy);margin-bottom:6px">Client Portal</h2>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:20px">Sign in to place orders, track delivery, and leave reviews.</p>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-form="signin">Sign In</button>
+        <button class="auth-tab" data-form="register">Create Account</button>
+      </div>
+
+      <!-- SIGN IN -->
+      <div class="auth-form" id="signinForm">
+        <div class="fg"><label>Email Address</label><input type="email" id="siEmail" placeholder="your@email.com"/></div>
+        <div class="fg"><label>Password</label><input type="password" id="siPass" placeholder="Your password"/></div>
+        <button class="auth-btn" onclick="doSignIn()">Sign In to Portal</button>
+        <div class="auth-divider">— or —</div>
+        <a href="https://wa.me/+254104699084?text=Hi%20JMasters!%20I%27d%20like%20to%20place%20an%20order." class="auth-wa" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a5.53 5.53 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.885l6.222-1.432A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.817 9.817 0 01-5.003-1.366l-.358-.213-3.712.854.87-3.612-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+          WhatsApp Us Directly Instead
+        </a>
+        <p class="auth-note">Demo: use any email + password "demo123" to explore the portal.</p>
+      </div>
+
+      <!-- REGISTER -->
+      <div class="auth-form hidden" id="registerForm">
+        <div class="fg"><label>Full Name</label><input type="text" id="regName" placeholder="Your full name"/></div>
+        <div class="fg"><label>Email Address</label><input type="email" id="regEmail" placeholder="your@email.com"/></div>
+        <div class="fg"><label>Password</label><input type="password" id="regPass" placeholder="Create a password"/></div>
+        <div class="fg"><label>Confirm Password</label><input type="password" id="regPass2" placeholder="Confirm password"/></div>
+        <button class="auth-btn" onclick="doRegister()">Create Account</button>
+        <p class="auth-note">By registering you agree to our terms. Your data is 100% confidential.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ DASHBOARD ══════════════ -->
+  <div class="dashboard" id="dashboard">
+
+    <!-- Header -->
+    <div class="dash-header">
+      <div class="dash-header-left">
+        <div class="dash-user-av" id="userAv">JD</div>
+        <div>
+          <div class="dash-user-name" id="userName">John Doe</div>
+          <div class="dash-user-email" id="userEmail">john@email.com</div>
+        </div>
+      </div>
+      <div class="dash-actions">
+        <a href="https://wa.me/+254104699084" target="_blank" style="background:#25D366;color:#fff;font-family:var(--fb);font-weight:600;font-size:.82rem;padding:8px 14px;border-radius:20px;text-decoration:none;display:flex;align-items:center;gap:6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a5.53 5.53 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.885l6.222-1.432A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.817 9.817 0 01-5.003-1.366l-.358-.213-3.712.854.87-3.612-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+          WhatsApp Dr. Jason
+        </a>
+        <button class="dash-logout" onclick="doLogout()">Sign Out</button>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="dash-tabs">
+      <button class="dash-tab active" data-panel="new-order">➕ New Order</button>
+      <button class="dash-tab" data-panel="my-orders">📋 My Orders <span id="orderBadge" style="background:var(--gold);color:var(--navy);font-size:.65rem;font-weight:800;padding:2px 7px;border-radius:10px;margin-left:4px;">3</span></button>
+      <button class="dash-tab" data-panel="notifications">🔔 Notifications <span style="background:#ef4444;color:#fff;font-size:.65rem;font-weight:800;padding:2px 7px;border-radius:10px;margin-left:4px;">2</span></button>
+      <button class="dash-tab" data-panel="my-reviews">⭐ My Reviews</button>
+    </div>
+
+    <!-- ── PANEL: NEW ORDER ── -->
+    <div class="dash-panel active" id="panel-new-order">
+      <h2 style="font-family:var(--fd);font-size:1.6rem;color:var(--navy);margin-bottom:6px;">Place a New Order</h2>
+      <p style="color:var(--muted);font-size:.9rem;margin-bottom:28px;">Fill in your order details and upload your files. Dr. Jason will be notified immediately via WhatsApp and will confirm your quote within 30 minutes.</p>
+
+      <div class="order-grid">
+        <div>
+          <!-- Step 1: Service -->
+          <div class="order-card" style="margin-bottom:20px;">
+            <h3>1 — Service Details</h3>
+            <div class="order-row">
+              <div class="of">
+                <label>Service Type</label>
+                <select id="o-service" onchange="calcPrice()">
+                  <option value="writing:1.0">📝 Academic Writing & Research</option>
+                  <option value="data:1.15">📊 Data Analytics (SPSS/Stata/R)</option>
+                  <option value="economics:1.15">📈 Economics Consultancy</option>
+                  <option value="business:1.10">💼 Business Analytics</option>
+                  <option value="health:1.10">🏥 Health Economics</option>
+                  <option value="thesis:1.0">📄 Thesis & Research Writing</option>
+                  <option value="nursing:1.10">❤️ Nursing Services</option>
+                  <option value="online:0.75">🎓 Online Class Support</option>
+                  <option value="cv:0.60">🚀 CV & Career Guidance</option>
+                  <option value="cs:1.20">💻 Computer Science</option>
+                  <option value="finance:1.10">💰 Finance & Accounting</option>
+                </select>
+              </div>
+              <div class="of">
+                <label>Academic Level</label>
+                <select id="o-level" onchange="calcPrice()">
+                  <option value="8">High School ($8/pg)</option>
+                  <option value="14">Undergraduate ($14/pg)</option>
+                  <option value="19" selected>Master's ($19/pg)</option>
+                  <option value="23">Advanced/Pro ($23/pg)</option>
+                  <option value="27">Doctoral Practice ($27/pg)</option>
+                  <option value="30">PhD Research ($30/pg)</option>
+                </select>
+              </div>
+            </div>
+            <div class="order-row">
+              <div class="of">
+                <label>Number of Pages</label>
+                <input type="number" id="o-pages" value="5" min="1" max="200" onchange="calcPrice()"/>
+              </div>
+              <div class="of">
+                <label>Deadline</label>
+                <select id="o-deadline" onchange="calcPrice()">
+                  <option value="0.92">Relaxed — 10+ days (–8%)</option>
+                  <option value="1.0" selected>Standard — 3–7 days</option>
+                  <option value="1.35">Rush — 24–48 hours (+35%)</option>
+                </select>
+              </div>
+            </div>
+            <div class="order-row full">
+              <div class="of">
+                <label>Assignment Title / Topic</label>
+                <input type="text" id="o-title" placeholder="e.g. Impact of Monetary Policy on Inflation — MSc Economics"/>
+              </div>
+            </div>
+            <div class="order-row full">
+              <div class="of">
+                <label>Full Instructions & Requirements</label>
+                <textarea id="o-instructions" placeholder="Paste your assignment instructions here. Include: word count, citation style (APA/Harvard/MLA), specific requirements, marking rubric, any datasets to use, etc."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Files -->
+          <div class="order-card">
+            <h3>2 — Upload Files & Documents</h3>
+            <p style="font-size:.84rem;color:var(--muted);margin-bottom:16px;">Upload your assignment brief, lecture notes, datasets, rubric, or any relevant materials. Accepted: PDF, Word, Excel, CSV, images, ZIP.</p>
+            <div class="file-drop" id="fileDrop" onclick="document.getElementById('fileInput').click()">
+              <div class="file-drop-icon">📎</div>
+              <p><strong>Click to upload</strong> or drag and drop files here</p>
+              <small>PDF · DOC · XLSX · CSV · PNG · JPG · ZIP — Max 50MB per file</small>
+              <input type="file" id="fileInput" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.png,.jpg,.jpeg,.zip,.txt" onchange="handleFiles(this.files)"/>
+            </div>
+            <div class="file-list" id="fileList"></div>
+          </div>
+        </div>
+
+        <!-- Price Summary -->
+        <div>
+          <div class="price-summary">
+            <div class="ps-title">Live Estimate</div>
+            <div class="ps-row"><span class="ps-label">Service</span><span class="ps-val" id="ps-svc">Academic Writing</span></div>
+            <div class="ps-row"><span class="ps-label">Level</span><span class="ps-val" id="ps-lvl">Master's</span></div>
+            <div class="ps-row"><span class="ps-label">Pages</span><span class="ps-val" id="ps-pgs">5 pages</span></div>
+            <div class="ps-row"><span class="ps-label">Deadline</span><span class="ps-val" id="ps-dead">Standard</span></div>
+            <div class="ps-row"><span class="ps-label">Rate</span><span class="ps-val" id="ps-rate">$19/pg</span></div>
+            <hr class="ps-div"/>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+              <span class="ps-total-label">Total Estimate</span>
+              <span class="ps-total-val" id="ps-total">$95</span>
+            </div>
+            <div class="ps-promo">
+              <div class="ps-promo-row">
+                <input class="ps-promo-input" id="promoInput" placeholder="Promo code (e.g. JMASTERS20)"/>
+                <button class="ps-promo-btn" onclick="applyPromo()">Apply</button>
+              </div>
+              <div id="promoMsg" style="font-size:.72rem;color:var(--gold2);margin-top:6px;display:none;"></div>
+            </div>
+            <button class="place-order-btn" onclick="placeOrder()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a5.53 5.53 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.885l6.222-1.432A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.817 9.817 0 01-5.003-1.366l-.358-.213-3.712.854.87-3.612-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+              Place Order via WhatsApp
+            </button>
+            <p style="font-size:.72rem;color:rgba(255,255,255,.35);text-align:center;margin-top:10px;">Your order details are sent directly to Dr. Jason on WhatsApp. Confirmed within 30 minutes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PANEL: MY ORDERS ── -->
+    <div class="dash-panel" id="panel-my-orders">
+      <h2 style="font-family:var(--fd);font-size:1.6rem;color:var(--navy);margin-bottom:6px;">My Orders</h2>
+      <p style="color:var(--muted);font-size:.9rem;margin-bottom:24px;">Track your orders, review deliveries, and request revisions.</p>
+
+      <div class="wa-alert">
+        <div class="wa-alert-icon">📱</div>
+        <p>Order status updates are sent to you directly on WhatsApp by Dr. Jason. You can also message us anytime at <a href="https://wa.me/+254104699084" target="_blank">+254 104 699 084</a>.</p>
+      </div>
+
+      <div class="orders-list" id="ordersList"></div>
+    </div>
+
+    <!-- ── PANEL: NOTIFICATIONS ── -->
+    <div class="dash-panel" id="panel-notifications">
+      <h2 style="font-family:var(--fd);font-size:1.6rem;color:var(--navy);margin-bottom:24px;">Notifications</h2>
+      <div class="notif-list" id="notifList"></div>
+    </div>
+
+    <!-- ── PANEL: MY REVIEWS ── -->
+    <div class="dash-panel" id="panel-my-reviews">
+      <h2 style="font-family:var(--fd);font-size:1.6rem;color:var(--navy);margin-bottom:6px;">My Reviews</h2>
+      <p style="color:var(--muted);font-size:.9rem;margin-bottom:24px;">Your submitted reviews for completed orders.</p>
+      <div id="reviewsList"></div>
+    </div>
+
+  </div><!-- /dashboard -->
+</div><!-- /portal-wrap -->
+
+<!-- ORDER DETAIL MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 id="modalTitle">Order Details</h3>
+      <button class="modal-close-btn" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<a href="https://wa.me/+254104699084" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a5.53 5.53 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.885l6.222-1.432A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.817 9.817 0 01-5.003-1.366l-.358-.213-3.712.854.87-3.612-.234-.371A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+</a>
+
+<script src="main.js"></script>
+<script>
+// ════════════════════════════════════════════
+//  JMASTERS GLOBAL — PORTAL JS
+// ════════════════════════════════════════════
+
+// ── STATE ──
+let currentUser = null;
+let promoApplied = false;
+let uploadedFiles = [];
+let selectedStars = 0;
+
+const DEMO_ORDERS = [
+  { id:'JM-2024-001', title:'Econometrics Panel Data Analysis', service:'Data Analytics', level:"Master's", pages:8, status:'delivered', date:'2024-06-01', price:175, files:['regression_analysis.spss','results_output.pdf'] },
+  { id:'JM-2024-002', title:'Healthcare Financing Literature Review', service:'Health Economics', level:'PhD Research', pages:20, status:'approved', date:'2024-05-20', price:600, reviewed:true, review:{stars:5,text:'Outstanding work. Delivered 2 days early and was exactly what I needed.'} },
+  { id:'JM-2024-003', title:'Python Machine Learning Assignment', service:'Computer Science', level:'Undergraduate', pages:5, status:'working', date:'2024-06-05', price:84 },
+];
+
+const DEMO_NOTIFS = [
+  { type:'success', title:'✅ Order JM-2024-001 Delivered', msg:'Your Data Analytics assignment has been completed and is ready for review.', time:'2 hours ago' },
+  { type:'alert',   title:'⚠️ Revision Requested — JM-2023-089', msg:'Dr. Jason has applied your revision notes and redelivered the updated work.', time:'Yesterday' },
+  { type:'info',    title:'🎉 Welcome to JMasters Global Portal!', msg:'Place orders, track delivery, and leave reviews all in one place.', time:'Today' },
+];
+
+// ── AUTH ──
+document.querySelectorAll('.auth-tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.auth-tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    document.querySelectorAll('.auth-form').forEach(f => f.classList.add('hidden'));
+    document.getElementById(t.dataset.form + 'Form').classList.remove('hidden');
+  });
+});
+
+function doSignIn() {
+  const email = document.getElementById('siEmail').value.trim();
+  const pass  = document.getElementById('siPass').value;
+  if (!email || !pass) { showToast('Please enter email and password', 'error'); return; }
+  if (pass !== 'demo123' && pass.length < 6) { showToast('Invalid credentials. Demo: use "demo123"', 'error'); return; }
+  const name = email.split('@')[0].replace(/[^a-zA-Z]/g,' ').trim() || 'Client';
+  loginUser({ name: name.charAt(0).toUpperCase() + name.slice(1), email });
+}
+
+function doRegister() {
+  const name  = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const pass  = document.getElementById('regPass').value;
+  const pass2 = document.getElementById('regPass2').value;
+  if (!name||!email||!pass) { showToast('Please fill all fields', 'error'); return; }
+  if (pass !== pass2) { showToast('Passwords do not match', 'error'); return; }
+  if (pass.length < 6) { showToast('Password must be at least 6 characters', 'error'); return; }
+  loginUser({ name, email });
+}
+
+function loginUser(user) {
+  currentUser = user;
+  document.getElementById('authScreen').style.display = 'none';
+  document.getElementById('dashboard').classList.add('active');
+  document.getElementById('userAv').textContent = user.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  document.getElementById('userName').textContent = user.name;
+  document.getElementById('userEmail').textContent = user.email;
+  renderOrders();
+  renderNotifs();
+  renderReviews();
+  showToast('Welcome back, ' + user.name.split(' ')[0] + '! 👋', 'success');
+}
+
+function doLogout() {
+  currentUser = null;
+  document.getElementById('dashboard').classList.remove('active');
+  document.getElementById('authScreen').style.display = 'flex';
+  showToast('Signed out successfully');
+}
+
+// ── TABS ──
+document.querySelectorAll('.dash-tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.dash-tab').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.dash-panel').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('panel-' + t.dataset.panel).classList.add('active');
+  });
+});
+
+// ── PRICE CALC ──
+function calcPrice() {
+  const svcRaw   = document.getElementById('o-service').value;
+  const smult    = parseFloat(svcRaw.split(':')[1]);
+  const svcName  = document.getElementById('o-service').options[document.getElementById('o-service').selectedIndex].text.replace(/^[^ ]+ /,'');
+  const rate     = parseInt(document.getElementById('o-level').value);
+  const lvlName  = document.getElementById('o-level').options[document.getElementById('o-level').selectedIndex].text.split('(')[0].trim();
+  const pages    = parseInt(document.getElementById('o-pages').value) || 1;
+  const dmult    = parseFloat(document.getElementById('o-deadline').value);
+  const deadName = document.getElementById('o-deadline').options[document.getElementById('o-deadline').selectedIndex].text.split('—')[0].trim();
+  const eff      = rate * smult * dmult;
+  let total      = Math.round(eff * pages);
+  if (promoApplied) total = Math.round(total * 0.8);
+
+  document.getElementById('ps-svc').textContent  = svcName;
+  document.getElementById('ps-lvl').textContent  = lvlName;
+  document.getElementById('ps-pgs').textContent  = pages + ' page' + (pages !== 1 ? 's' : '');
+  document.getElementById('ps-dead').textContent = deadName;
+  document.getElementById('ps-rate').textContent = '$' + eff.toFixed(0) + '/pg';
+  document.getElementById('ps-total').textContent = '$' + total;
+  return { total, svcName, lvlName, pages, deadName, rate: eff.toFixed(0) };
+}
+calcPrice();
+
+function applyPromo() {
+  const code = document.getElementById('promoInput').value.trim().toUpperCase();
+  const msg  = document.getElementById('promoMsg');
+  if (code === 'JMASTERS20') {
+    promoApplied = true;
+    msg.style.display = 'block';
+    msg.textContent = '✅ 20% discount applied!';
+    msg.style.color = '#86efac';
+    calcPrice();
+    showToast('Promo code applied — 20% off! 🎉', 'success');
+  } else {
+    msg.style.display = 'block';
+    msg.textContent = '❌ Invalid promo code';
+    msg.style.color = '#fca5a5';
+  }
+}
+
+// ── FILE UPLOAD ──
+const dropZone = document.getElementById('fileDrop');
+if (dropZone) {
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag'));
+  dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('drag'); handleFiles(e.dataTransfer.files); });
+}
+
+function handleFiles(files) {
+  Array.from(files).forEach(f => {
+    if (uploadedFiles.find(x => x.name === f.name)) return;
+    uploadedFiles.push(f);
+  });
+  renderFileList();
+}
+
+function renderFileList() {
+  const list = document.getElementById('fileList');
+  if (!list) return;
+  list.innerHTML = uploadedFiles.map((f,i) => `
+    <div class="file-item">
+      <span>${getFileIcon(f.name)}</span>
+      <span>${f.name}</span>
+      <span style="color:var(--muted);font-size:.74rem;">${(f.size/1024).toFixed(0)}KB</span>
+      <button onclick="removeFile(${i})">✕</button>
+    </div>`).join('');
+}
+
+function removeFile(i) { uploadedFiles.splice(i, 1); renderFileList(); }
+
+function getFileIcon(name) {
+  const ext = name.split('.').pop().toLowerCase();
+  const map = { pdf:'📄', doc:'📝', docx:'📝', xls:'📊', xlsx:'📊', csv:'📊', png:'🖼️', jpg:'🖼️', jpeg:'🖼️', zip:'🗜️' };
+  return map[ext] || '📎';
+}
+
+// ── PLACE ORDER ──
+function placeOrder() {
+  const title = document.getElementById('o-title').value.trim();
+  const instr = document.getElementById('o-instructions').value.trim();
+  if (!title) { showToast('Please enter the assignment title', 'error'); return; }
+  if (!instr)  { showToast('Please enter your assignment instructions', 'error'); return; }
+
+  const p = calcPrice();
+  const svc = document.getElementById('o-service').options[document.getElementById('o-service').selectedIndex].text;
+  const lvl = document.getElementById('o-level').options[document.getElementById('o-level').selectedIndex].text;
+  const dead = document.getElementById('o-deadline').options[document.getElementById('o-deadline').selectedIndex].text;
+  const files = uploadedFiles.map(f => f.name).join(', ') || 'None uploaded';
+
+  const waMsg = encodeURIComponent(
+`🎓 NEW ORDER — JMasters Global Portal
+
+📋 ORDER DETAILS:
+• Title: ${title}
+• Service: ${svc}
+• Level: ${lvl}
+• Pages: ${p.pages}
+• Deadline: ${dead}
+• Estimated Total: $${p.total}${promoApplied ? ' (20% promo applied)' : ''}
+
+📝 INSTRUCTIONS:
+${instr.slice(0, 300)}${instr.length > 300 ? '...' : ''}
+
+📎 FILES UPLOADED: ${files}
+
+👤 CLIENT: ${currentUser?.name || 'Portal User'}
+✉️ EMAIL: ${currentUser?.email || 'N/A'}
+
+Please confirm the order and payment details. Thank you!`
+  );
+
+  // Open WhatsApp with the full order details
+  window.open('https://wa.me/+254104699084?text=' + waMsg, '_blank');
+
+  // Add to local orders list
+  const newOrder = {
+    id: 'JM-' + Date.now().toString().slice(-6),
+    title, service: svc, level: lvl, pages: p.pages,
+    status: 'pending', date: new Date().toISOString().slice(0,10), price: p.total
+  };
+  DEMO_ORDERS.unshift(newOrder);
+  renderOrders();
+
+  showToast('Order sent to Dr. Jason on WhatsApp! ✅', 'success');
+
+  // Reset form
+  document.getElementById('o-title').value = '';
+  document.getElementById('o-instructions').value = '';
+  uploadedFiles = [];
+  renderFileList();
+
+  // Switch to orders tab
+  setTimeout(() => {
+    document.querySelectorAll('.dash-tab').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.dash-panel').forEach(x => x.classList.remove('active'));
+    document.querySelector('[data-panel="my-orders"]').classList.add('active');
+    document.getElementById('panel-my-orders').classList.add('active');
+  }, 1500);
+}
+
+// ── RENDER ORDERS ──
+function renderOrders() {
+  const list = document.getElementById('ordersList');
+  if (!list) return;
+  if (DEMO_ORDERS.length === 0) {
+    list.innerHTML = `<div class="empty-state"><div class="empty-state-icon">📋</div><h3>No orders yet</h3><p>Place your first order using the "New Order" tab above.</p></div>`;
+    return;
+  }
+  list.innerHTML = DEMO_ORDERS.map((o,i) => `
+    <div class="order-item">
+      <div>
+        <div class="oi-ref">${o.id} · ${o.date}</div>
+        <div class="oi-title">${o.title}</div>
+        <div class="oi-meta">${o.service} · ${o.level} · ${o.pages} pages · <strong>$${o.price}</strong></div>
+      </div>
+      <div class="oi-actions">
+        <span class="oi-status status-${o.status}">${statusLabel(o.status)}</span>
+        <button class="oi-btn oi-btn-view" onclick="viewOrder(${i})">View Details</button>
+        ${o.status === 'delivered' ? `<button class="oi-btn oi-btn-approve" onclick="approveOrder(${i})">✅ Approve</button><button class="oi-btn oi-btn-revision" onclick="requestRevision(${i})">🔄 Revision</button>` : ''}
+        ${o.status === 'approved' && !o.reviewed ? `<button class="oi-btn oi-btn-review" onclick="leaveReview(${i})">⭐ Leave Review</button>` : ''}
+      </div>
+    </div>`).join('');
+}
+
+function statusLabel(s) {
+  const map = { pending:'⏳ Pending', working:'🔧 In Progress', delivered:'📦 Delivered', approved:'✅ Approved', revision:'🔄 Under Revision' };
+  return map[s] || s;
+}
+
+// ── VIEW ORDER ──
+function viewOrder(i) {
+  const o = DEMO_ORDERS[i];
+  document.getElementById('modalTitle').textContent = o.id + ' — ' + o.title;
+  document.getElementById('modalBody').innerHTML = `
+    <div class="modal-section">
+      <h4>Order Summary</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:var(--off);border-radius:10px;padding:12px;"><div style="font-size:.72rem;color:var(--muted);margin-bottom:3px;">Service</div><div style="font-weight:600;color:var(--navy);font-size:.88rem;">${o.service}</div></div>
+        <div style="background:var(--off);border-radius:10px;padding:12px;"><div style="font-size:.72rem;color:var(--muted);margin-bottom:3px;">Level</div><div style="font-weight:600;color:var(--navy);font-size:.88rem;">${o.level}</div></div>
+        <div style="background:var(--off);border-radius:10px;padding:12px;"><div style="font-size:.72rem;color:var(--muted);margin-bottom:3px;">Pages</div><div style="font-weight:600;color:var(--navy);font-size:.88rem;">${o.pages} pages</div></div>
+        <div style="background:var(--off);border-radius:10px;padding:12px;"><div style="font-size:.72rem;color:var(--muted);margin-bottom:3px;">Total</div><div style="font-weight:600;color:var(--gold);font-size:.88rem;">$${o.price}</div></div>
+      </div>
+    </div>
+    ${o.status === 'delivered' || o.status === 'approved' ? `
+    <div class="modal-section">
+      <h4>Delivered Files</h4>
+      ${(o.files||['completed_work.pdf','appendix.docx']).map(f => `
+        <div class="delivery-file">
+          <div class="delivery-file-icon">${getFileIcon(f)}</div>
+          <div class="delivery-file-name">${f}</div>
+          <button class="delivery-file-dl" onclick="showToast('In the live system, files would download here. Contact Dr. Jason on WhatsApp for your files.','success')">Download</button>
+        </div>`).join('')}
+      <p style="font-size:.76rem;color:var(--muted);margin-top:8px;">📱 Files are also sent directly to you on WhatsApp by Dr. Jason.</p>
+    </div>
+    <div class="modal-section">
+      <h4>Your Decision</h4>
+      <div class="decision-row">
+        <button class="btn-approve" onclick="approveOrder(${i});closeModal()">✅ Approve & Accept Work</button>
+        <button class="btn-request-rev" onclick="document.getElementById('revBox${i}').style.display='block'">🔄 Request Revision</button>
+      </div>
+      <div class="revision-box" id="revBox${i}">
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:8px;margin-top:12px;">Describe what needs to be changed:</p>
+        <textarea id="revText${i}" placeholder="Please revise the regression section to include robust standard errors and add the interpretation of the R-squared value..."></textarea>
+        <button class="send-revision-btn" onclick="sendRevision(${i})">Send Revision Request</button>
+      </div>
+    </div>` : ''}
+    ${o.status === 'approved' && !o.reviewed ? `
+    <div class="modal-section">
+      <div class="review-form">
+        <h4>Leave a Review</h4>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:14px;">Your feedback helps other clients and helps JMasters Global grow. Thank you!</p>
+        <div class="star-picker" id="modalStars">
+          <span onclick="setStars(1,'modal')" data-star="1">★</span>
+          <span onclick="setStars(2,'modal')" data-star="2">★</span>
+          <span onclick="setStars(3,'modal')" data-star="3">★</span>
+          <span onclick="setStars(4,'modal')" data-star="4">★</span>
+          <span onclick="setStars(5,'modal')" data-star="5">★</span>
+        </div>
+        <textarea id="modalReviewText" placeholder="Share your experience — quality, speed, communication..."></textarea>
+        <button class="submit-review-btn" onclick="submitReview(${i})">Submit Review</button>
+      </div>
+    </div>` : ''}
+    ${o.reviewed ? `<div style="background:rgba(5,150,105,.08);border:1.5px solid rgba(5,150,105,.2);border-radius:12px;padding:16px;"><div style="color:#047857;font-weight:700;font-size:.88rem;margin-bottom:6px;">✅ Review Submitted</div><div style="color:var(--gold);font-size:1rem;margin-bottom:6px;">${'★'.repeat(o.review.stars)}</div><div style="font-size:.88rem;color:var(--muted);">"${o.review.text}"</div></div>` : ''}`;
+  document.getElementById('orderModal').classList.add('open');
+}
+
+function closeModal() { document.getElementById('orderModal').classList.remove('open'); }
+
+// ── APPROVE / REVISION ──
+function approveOrder(i) {
+  DEMO_ORDERS[i].status = 'approved';
+  renderOrders();
+  closeModal();
+  showToast('Order approved! You can now leave a review. ⭐', 'success');
+  DEMO_NOTIFS.unshift({ type:'success', title:'✅ Order Approved — ' + DEMO_ORDERS[i].id, msg:'You approved the delivery. Please leave a review to help other clients!', time:'Just now' });
+  renderNotifs();
+}
+
+function requestRevision(i) {
+  DEMO_ORDERS[i].status = 'revision';
+  renderOrders();
+  showToast('Revision request opened in order details', '');
+  viewOrder(i);
+}
+
+function sendRevision(i) {
+  const text = document.getElementById('revText' + i)?.value.trim();
+  if (!text) { showToast('Please describe the revision needed', 'error'); return; }
+  DEMO_ORDERS[i].status = 'revision';
+  const msg = encodeURIComponent(`🔄 REVISION REQUEST — ${DEMO_ORDERS[i].id}\n\nOrder: ${DEMO_ORDERS[i].title}\n\nRevision Notes:\n${text}\n\nClient: ${currentUser?.name}`);
+  window.open('https://wa.me/+254104699084?text=' + msg, '_blank');
+  renderOrders();
+  closeModal();
+  showToast('Revision request sent to Dr. Jason on WhatsApp! 🔄', 'success');
+}
+
+// ── LEAVE REVIEW ──
+function leaveReview(i) {
+  document.querySelectorAll('.dash-tab').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.dash-panel').forEach(x => x.classList.remove('active'));
+  document.querySelector('[data-panel="my-orders"]').classList.add('active');
+  document.getElementById('panel-my-orders').classList.add('active');
+  viewOrder(i);
+}
+
+let modalStars = 0;
+function setStars(n, ctx) {
+  modalStars = n;
+  const picker = document.getElementById(ctx + 'Stars') || document.getElementById('mainStarPicker');
+  if (!picker) return;
+  picker.querySelectorAll('span').forEach((s,i) => s.classList.toggle('active', i < n));
+}
+
+function submitReview(i) {
+  const text = document.getElementById('modalReviewText')?.value.trim();
+  if (!modalStars) { showToast('Please select a star rating', 'error'); return; }
+  if (!text) { showToast('Please write a review', 'error'); return; }
+  DEMO_ORDERS[i].reviewed = true;
+  DEMO_ORDERS[i].review = { stars: modalStars, text };
+  renderOrders();
+  renderReviews();
+  closeModal();
+  showToast('Review submitted! Thank you 🌟', 'success');
+  DEMO_NOTIFS.unshift({ type:'success', title:'⭐ Review Submitted', msg:'Thank you for reviewing order ' + DEMO_ORDERS[i].id + '. Your feedback means a lot!', time:'Just now' });
+  renderNotifs();
+}
+
+// ── RENDER NOTIFS ──
+function renderNotifs() {
+  const list = document.getElementById('notifList');
+  if (!list) return;
+  list.innerHTML = DEMO_NOTIFS.map(n => `
+    <div class="notif-item ${n.type}">
+      <div class="notif-title">${n.title}</div>
+      <div style="font-size:.84rem;color:var(--muted);margin:4px 0;">${n.msg}</div>
+      <div class="notif-time">${n.time}</div>
+    </div>`).join('');
+}
+
+// ── RENDER REVIEWS ──
+function renderReviews() {
+  const list = document.getElementById('reviewsList');
+  if (!list) return;
+  const reviewed = DEMO_ORDERS.filter(o => o.reviewed);
+  if (reviewed.length === 0) {
+    list.innerHTML = `<div class="empty-state"><div class="empty-state-icon">⭐</div><h3>No reviews yet</h3><p>Approve a delivered order to leave your first review.</p></div>`;
+    return;
+  }
+  list.innerHTML = reviewed.map(o => `
+    <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:22px 24px;margin-bottom:16px;">
+      <div style="font-size:.72rem;color:var(--muted);margin-bottom:4px;">${o.id}</div>
+      <div style="font-family:var(--fd);font-size:1rem;color:var(--navy);margin-bottom:8px;">${o.title}</div>
+      <div style="color:var(--gold);font-size:1.2rem;margin-bottom:8px;">${'★'.repeat(o.review.stars)}${'☆'.repeat(5-o.review.stars)}</div>
+      <div style="font-size:.88rem;color:var(--muted);font-style:italic;">"${o.review.text}"</div>
+    </div>`).join('');
+}
+
+// ── TOAST ──
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast' + (type ? ' ' + type : '');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+// ── MODAL CLOSE ON BACKDROP ──
+document.getElementById('orderModal')?.addEventListener('click', e => {
+  if (e.target === document.getElementById('orderModal')) closeModal();
+});
+
+// ── PRICE WATCHERS ──
+['o-service','o-level','o-deadline'].forEach(id => {
+  document.getElementById(id)?.addEventListener('change', calcPrice);
+});
+document.getElementById('o-pages')?.addEventListener('input', calcPrice);
+</script>
+</body>
+</html>
